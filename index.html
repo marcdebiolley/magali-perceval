@@ -246,28 +246,220 @@
 
     <div class="divider" data-audience="member"><div class="divider-line"></div></div>
 
-    <section id="rsvp" style="text-align: center; padding: 120px 40px;" data-audience="member">
+    <section id="rsvp" data-audience="member">
       <div class="reveal">
         <div class="section-label">Confirmer</div>
         <h2 class="section-title">RSVP</h2>
-        <p class="section-intro" style="margin: 0 auto;">À compléter.</p>
+        <p class="section-intro">Merci de confirmer votre présence avant le 1er juin 2026.</p>
+      </div>
+
+      <div class="rsvp-card reveal">
+        <form id="rsvp-form" onsubmit="handleRSVP(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="prenom">Prénom</label>
+              <input type="text" id="prenom" name="prenom" required placeholder="Votre prénom" />
+            </div>
+            <div class="form-group">
+              <label for="nom">Nom</label>
+              <input type="text" id="nom" name="nom" required placeholder="Votre nom" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required placeholder="votre@email.com" />
+          </div>
+
+          <div class="form-group">
+            <label class="label-block">Serez-vous présent(e) ?</label>
+            <div class="radio-group">
+              <label class="radio-card">
+                <input type="radio" name="presence" value="oui" required />
+                <span class="radio-label">
+                  <span class="radio-icon">✓</span>
+                  Avec joie
+                </span>
+              </label>
+              <label class="radio-card">
+                <input type="radio" name="presence" value="non" />
+                <span class="radio-label">
+                  <span class="radio-icon">✕</span>
+                  Malheureusement non
+                </span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group" id="guests-group">
+            <label for="guests">Nombre de personnes (vous inclus)</label>
+            <div class="stepper">
+              <button type="button" class="stepper-btn" onclick="updateGuests(-1)">−</button>
+              <input type="number" id="guests" name="guests" value="1" min="1" max="10" readonly />
+              <button type="button" class="stepper-btn" onclick="updateGuests(1)">+</button>
+            </div>
+            <div id="guest-names"></div>
+          </div>
+
+          <div class="form-group" id="events-group" data-audience="young">
+            <label class="label-block">À quels moments serez-vous présent(e) ?</label>
+            <div class="checkbox-group">
+              <label class="checkbox-card">
+                <input type="checkbox" name="events" value="jeudi" />
+                <span class="checkbox-label">
+                  <span class="checkbox-day">Jeudi</span>
+                  <span class="checkbox-desc">Accueil piscine & pizza</span>
+                </span>
+              </label>
+              <label class="checkbox-card">
+                <input type="checkbox" name="events" value="vendredi" checked />
+                <span class="checkbox-label">
+                  <span class="checkbox-day">Vendredi</span>
+                  <span class="checkbox-desc">Cérémonie & soirée</span>
+                </span>
+              </label>
+              <label class="checkbox-card">
+                <input type="checkbox" name="events" value="samedi" />
+                <span class="checkbox-label">
+                  <span class="checkbox-day">Samedi</span>
+                  <span class="checkbox-desc">Brunch festif</span>
+                </span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group" id="allergies-group">
+            <label for="allergies">Allergies ou régime alimentaire</label>
+            <input type="text" id="allergies" name="allergies" placeholder="Végétarien, sans gluten, etc." />
+          </div>
+
+          <div class="form-group">
+            <label for="message">Un petit mot ? <span class="label-optional">(optionnel)</span></label>
+            <textarea id="message" name="message" rows="3" placeholder="On a hâte de vous lire..."></textarea>
+          </div>
+
+          <button type="submit" class="btn-submit" id="btn-submit">
+            <span class="btn-text">Envoyer ma réponse</span>
+            <span class="btn-loader" style="display:none;">
+              <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            </span>
+          </button>
+        </form>
+
+        <div id="rsvp-success" style="display:none;">
+          <div class="success-icon">♥</div>
+          <h3 class="success-title">Merci !</h3>
+          <p class="success-text">Votre réponse a bien été enregistrée.<br />On a hâte de vous retrouver en Provence.</p>
+        </div>
       </div>
     </section>
 
-    <footer data-audience="member">
+    <!-- FOOTER -->
+    <footer data-audience="all">
       <div class="footer-ornament">
         <span></span>
         <div class="diamond"></div>
         <span></span>
       </div>
-      <p>Magali & Perceval — 11 septembre 2026</p>
-      <p style="margin-top: 6px; opacity: 0.6;"><span data-role-badge>Accès : non défini</span> · Dernière mise à jour : à compléter</p>
+      <p class="footer-heading">Contact</p>
+      <div class="footer-contacts">
+        <a href="tel:+32479947943">Magali : +32 479 94 79 43</a>
+        <a href="tel:+32490649129">Perceval : +32 490 64 91 29</a>
+      </div>
+      <p class="footer-credit">Designed by <a href="https://marcodb.be" target="_blank" rel="noopener">marcodb</a></p>
+      <a href="#" class="footer-gift">Liste cadeau</a>
     </footer>
 
     <script>
       window.MPAccess.mountGate();
       window.MPAccess.mountSwitchLinks();
       window.MPAccess.applyAudience();
+
+      // ─── RSVP FORM LOGIC ───
+      const presenceRadios = document.querySelectorAll('input[name="presence"]');
+      const guestsGroup = document.getElementById('guests-group');
+      const eventsGroup = document.getElementById('events-group');
+      const allergiesGroup = document.getElementById('allergies-group');
+
+      function setGroupDisplay(el, shouldShow) {
+        if (!el) return;
+        if (el.hidden) return;
+        el.style.display = shouldShow ? 'block' : 'none';
+      }
+
+      presenceRadios.forEach((radio) => {
+        radio.addEventListener('change', () => {
+          const coming = radio.value === 'oui';
+          setGroupDisplay(guestsGroup, coming);
+          setGroupDisplay(eventsGroup, coming);
+          setGroupDisplay(allergiesGroup, coming);
+        });
+      });
+
+      function updateGuests(delta) {
+        const input = document.getElementById('guests');
+        if (!input) return;
+        let val = parseInt(input.value) + delta;
+        val = Math.max(1, Math.min(10, val));
+        input.value = val;
+        renderGuestNames(val);
+      }
+
+      function renderGuestNames(count) {
+        const container = document.getElementById('guest-names');
+        if (!container) return;
+        const existing = {};
+        container.querySelectorAll('.guest-name-row').forEach((row) => {
+          const idx = row.dataset.index;
+          const inputs = row.querySelectorAll('input');
+          existing[idx] = { prenom: inputs[0].value, nom: inputs[1].value };
+        });
+
+        container.innerHTML = '';
+
+        for (let i = 2; i <= count; i++) {
+          const row = document.createElement('div');
+          row.className = 'guest-name-row';
+          row.dataset.index = i;
+          row.style.animationDelay = (i - 2) * 0.05 + 's';
+          const prev = existing[i] || { prenom: '', nom: '' };
+          row.innerHTML = `
+      <span class="guest-number">${i}</span>
+      <input type="text" name="guest_prenom_${i}" placeholder="Prénom" value="${prev.prenom}" required>
+      <input type="text" name="guest_nom_${i}" placeholder="Nom" value="${prev.nom}" required>
+    `;
+          container.appendChild(row);
+        }
+      }
+
+      function handleRSVP(e) {
+        e.preventDefault();
+        const btn = document.getElementById('btn-submit');
+        const btnText = btn ? btn.querySelector('.btn-text') : null;
+        const btnLoader = btn ? btn.querySelector('.btn-loader') : null;
+
+        if (btnText) btnText.style.display = 'none';
+        if (btnLoader) btnLoader.style.display = 'inline-flex';
+        if (btn) btn.disabled = true;
+
+        // Simulation (à remplacer) :
+        setTimeout(() => {
+          const form = document.getElementById('rsvp-form');
+          const success = document.getElementById('rsvp-success');
+          if (form) form.style.display = 'none';
+          if (success) success.style.display = 'block';
+        }, 1500);
+      }
+
+      window.updateGuests = updateGuests;
+      window.handleRSVP = handleRSVP;
+
+      const selectedPresence = document.querySelector('input[name="presence"]:checked');
+      const coming = selectedPresence ? selectedPresence.value === 'oui' : true;
+      setGroupDisplay(guestsGroup, coming);
+      setGroupDisplay(eventsGroup, coming);
+      setGroupDisplay(allergiesGroup, coming);
+      renderGuestNames(Number(document.getElementById('guests')?.value || 1));
 
       const reveals = document.querySelectorAll('.reveal');
       const observer = new IntersectionObserver(
