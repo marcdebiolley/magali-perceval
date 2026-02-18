@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Magali & Perceval — 11.09.2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./design.css?v=20260218" />
+  </head>
+  <body>
+    <script src="./access.js"></script>
+
+    <nav data-audience="member">
+      <div class="nav-inner">
+        <a href="#top" class="nav-brand">Magali <span>&</span> Perceval</a>
+        <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links">
+          <li><a href="#festivites">Les festivités</a></li>
+          <li><a href="#transport">Transport & logement</a></li>
+          <li><a href="#region">Région</a></li>
+          <li><a href="#rsvp">RSVP</a></li>
+          <li><a href="#" data-clear-access>Changer de code</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <section class="hero" id="top" data-after-gate>
+      <div class="hero-date">11 septembre 2026 — Crillon-le-Brave</div>
+      <h1 class="hero-names">
+        Magali
+        <span class="ampersand">&</span>
+        Perceval
+      </h1>
+
+      <div class="hero-access" data-audience="locked" data-gate>
+        <p class="hero-location">Provence, France</p>
+        <div class="gate-wrap">
+          <form class="gate-form" data-gate-form>
+            <div class="gate-row">
+              <input class="gate-input" id="code" name="code" type="password" inputmode="text" autocomplete="one-time-code" placeholder="Code d’accès" data-gate-input />
+              <button class="gate-button" type="submit">Entrer</button>
+            </div>
+            <div class="gate-meta">
+              <div class="gate-error" role="status" aria-live="polite" data-gate-error></div>
+              <a href="#" class="gate-reset" data-gate-reset>Effacer</a>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <p class="hero-location" data-audience="member">Provence, France</p>
+      <div class="hero-scroll" data-audience="member"><span></span></div>
+    </section>
+
+    <div class="divider" data-audience="member"><div class="divider-line"></div></div>
+
+    <section id="festivites" data-audience="member">
+      <div class="reveal">
+        <div class="section-label">Programme</div>
+        <h2 class="section-title">Les festivités</h2>
+        <p class="section-intro">Toutes les informations pour le Jour J, et les moments "jeunes & fratrie" si concernés.</p>
+      </div>
+
+      <div class="event-card reveal" data-audience="young">
+        <div class="card-header">
+          <span class="card-day">Jeudi — Accueil</span>
+          <span class="card-badge">Jeunes & fratrie</span>
+        </div>
+        <div class="card-body">
+          <p>Nous accueillons ceux qui seront déjà dans la région pour le mariage à partir de 16h dans la maison des parents de Perceval, à Crillon-le-Brave, pour une aprem relax au bord de la piscine, pizza et cocktail.</p>
+          <p><strong>Mot d'ordre :</strong> faites au mieux pour vous.</p>
+          <div class="ceremony-illus ceremony-illus--large ceremony-illus--center" aria-hidden="true">
+            <img src="./images/jeudi%20welcome.png" alt="" loading="lazy" />
+          </div>
+          <div class="info-grid">
+            <span class="info-label">Adresse</span>
+            <span class="info-value"><a href="https://www.google.com/maps/search/?api=1&query=219%2C%20Chemin%20de%20la%20Croix%20du%20Coq%2C%2084410%20Crillon-le-Brave" target="_blank" rel="noopener noreferrer">219, Chemin de la Croix du Coq, 84410 Crillon-le-Brave</a></span>
+            <span class="info-label">Horaire</span>
+            <span class="info-value">16h – 22h</span>
+            <span class="info-label">Dress code</span>
+            <span class="info-value">Pas de dress code. Maillots + tenue d'été. Birkenstock et sandales encouragées.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="event-card reveal">
+        <div class="card-header">
+          <span class="card-day">Vendredi — Jour J</span>
+          <span class="card-badge">11 septembre 2026</span>
+        </div>
+        <div class="card-body">
+          <div class="ceremony-head">
+            <div class="card-subtitle">Partie 1 — Église</div>
+            <div class="ceremony-illus" aria-hidden="true">
+              <img src="./images/eglise%20m%26p.png" alt="" loading="lazy" />
+            </div>
+          </div>
+          <div class="info-grid">
+            <span class="info-label">Heure</span>
+            <span class="info-value">14h30</span>
+            <span class="info-label">Adresse</span>
+            <span class="info-value"><a href="https://www.google.com/maps/search/?api=1&query=18%2C%20Rue%20Escalado%2C%2084410%20Crillon-le-Brave" target="_blank" rel="noopener noreferrer">18, Rue Escalado, 84410 Crillon-le-Brave</a></span>
+            <span class="info-label">Parking</span>
+            <span class="info-value">Parking de l'église ou "Rue du Capitaine Crillon"</span>
+          </div>
+
+          <div class="ceremony-head">
+            <div class="card-subtitle">Partie 2 — Domaine des Pins</div>
+            <div class="ceremony-illus" aria-hidden="true">
+              <img src="./images/domaine%20de%20pins%20.png" alt="" loading="lazy" />
+            </div>
+          </div>
+          <div class="info-grid">
+            <span class="info-label">Réception</span>
+            <span class="info-value">16h30</span>
+            <span class="info-label">Dîner</span>
+            <span class="info-value">19h</span>
+            <span class="info-label">Soirée</span>
+            <span class="info-value">22h – 3h</span>
+            <span class="info-label">Adresse</span>
+            <span class="info-value"><a href="https://www.google.com/maps/search/?api=1&query=1100%20Chem.%20Mormoiron%20par%20les%20Mourands%2C%2084410%20Crillon-le-Brave%2C%20France" target="_blank" rel="noopener noreferrer">Domaine des Pins — 1100 Chem. Mormoiron par les Mourands, 84410 Crillon-le-Brave, France</a></span>
+            <span class="info-label">Déplacement</span>
+            <span class="info-value">Parking à côté du domaine (indiqué à l'arrivée). Marche possible depuis l'église (20–25 min).</span>
+            <span class="info-label">Dress code</span>
+            <span class="info-value">Tenue de ville</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="event-card reveal" data-audience="young">
+        <div class="card-header">
+          <span class="card-day">Samedi — Brunch festif</span>
+          <span class="card-badge">Jeunes & fratrie</span>
+        </div>
+        <div class="card-body">
+          <div class="ceremony-head">
+            <div class="card-subtitle">Brunch</div>
+            <div class="ceremony-illus" aria-hidden="true">
+              <img src="./images/brunch.png" alt="" loading="lazy" />
+            </div>
+          </div>
+          <div class="info-grid">
+            <span class="info-label">Horaire</span>
+            <span class="info-value">13h – 22h</span>
+            <span class="info-label">Adresse</span>
+            <span class="info-value"><a href="https://www.google.com/maps/search/?api=1&query=1100%20Chem.%20Mormoiron%20par%20les%20Mourands%2C%2084410%20Crillon-le-Brave%2C%20France" target="_blank" rel="noopener noreferrer">Domaine des Pins — 1100 Chem. Mormoiron par les Mourands, 84410 Crillon-le-Brave, France</a></span>
+            <span class="info-label">Dress code</span>
+            <span class="info-value">À compléter</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider" data-audience="member"><div class="divider-line"></div></div>
+
+    <section id="transport" data-audience="member">
+      <div class="reveal">
+        <div class="section-label">Pratique</div>
+        <h2 class="section-title">Transport & logement</h2>
+        <p class="section-intro">Comment venir, se déplacer, et où dormir autour de Crillon-le-Brave.</p>
+      </div>
+
+      <div class="transport-block reveal">
+        <h3>Venir à Crillon-le-Brave</h3>
+
+        <div class="transport-method">
+          <h4>En train</h4>
+          <p>Gare la plus proche : Avignon (≈ 35 minutes en voiture du village).</p>
+          <p>Depuis Bruxelles-Midi : 3 trains directs (matin, vers 13h, fin de journée) ≈ 5h. Il existe aussi de nombreux trains avec une escale à Paris, souvent moins chers.</p>
+          <p>Attention : certains billets ne sont disponibles qu'à partir de X mois avant le trajet. Mets une alerte et réserve dès que possible.</p>
+          <p>Petit conseil : carte réduction à 49€.</p>
+        </div>
+
+        <div class="transport-method">
+          <h4>En voiture</h4>
+          <p>Trajet classique vers le Sud ≈ 9h. Escale conseillée à Beaune si en deux jours. Covoiturage encouragé.</p>
+        </div>
+      </div>
+
+      <div class="transport-block reveal">
+        <h3>Se déplacer</h3>
+
+        <div class="transport-method">
+          <h4>Taxi</h4>
+          <p>Contacts taxi : à ajouter. On les repartagera avant le mariage pour éviter que quiconque reprenne sa voiture sous alcool.</p>
+        </div>
+
+        <div class="transport-method">
+          <h4>Voiture de location</h4>
+          <p>Louer une voiture depuis la gare d'Avignon peut être pratique.</p>
+        </div>
+
+        <div class="transport-method">
+          <h4>Vélo / à pied</h4>
+          <p>Super option pour profiter de l'ambiance locale.</p>
+        </div>
+      </div>
+
+      <div class="transport-block reveal">
+        <h3>Où dormir ?</h3>
+        <div class="lodging-grid">
+          <div class="lodging-item"><strong>Crillon-le-Brave</strong><span>Idéal pour être sur place.</span></div>
+          <div class="lodging-item"><strong>Bédoin</strong><span>≈ 10 min en voiture. Plus grand, souvent plus de logements.</span></div>
+          <div class="lodging-item"><strong>Caromb / St-Pierre-de-Vassols</strong><span>≈ 12 minutes en voiture.</span></div>
+          <div class="lodging-item"><strong>Modène</strong><span>≈ 20 minutes en voiture.</span></div>
+        </div>
+      </div>
+
+      <div class="tip-box reveal">
+        <p>Si vous avez des questions ou besoin d'aide pour les transports, contactez-nous.</p>
+      </div>
+    </section>
+
+    <div class="divider" data-audience="member"><div class="divider-line"></div></div>
+
+    <section id="region" data-audience="member">
+      <div class="reveal">
+        <div class="section-label">Explorer</div>
+        <h2 class="section-title">À faire dans la région</h2>
+        <p class="section-intro">Quelques idées pour profiter du Ventoux et des environs.</p>
+      </div>
+
+      <div class="activity-grid reveal">
+        <div class="activity-card">
+          <h4>Mont Ventoux</h4>
+          <p>Vous pouvez le grimper à pied ou profiter d'une sortie vélo. Bédoin est un point de départ phare. Location vélo conseillée : à compléter (réserver en avance).</p>
+        </div>
+        <div class="activity-card">
+          <h4>Balades & villages</h4>
+          <p>Gordes, Suzette, Le Baroux... (à compléter). Balades autour du village (voir carte).</p>
+        </div>
+        <div class="activity-card">
+          <h4>Dégustation de vin</h4>
+          <p>La Ferme Saint Pierre, Valcombe... (appeler pour réserver).</p>
+        </div>
+        <div class="activity-card">
+          <h4>Manger / marchés</h4>
+          <p>Restaurants : Le Saint Romain, Clovis & Basina, Le Six à table, Lily & Paul. Marchés : Bédoin (lundi matin), Pernes (samedi matin), Isle-sur-la-Sorgue (dimanche matin).</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider" data-audience="member"><div class="divider-line"></div></div>
+
+    <section id="rsvp" style="text-align: center; padding: 120px 40px;" data-audience="member">
+      <div class="reveal">
+        <div class="section-label">Confirmer</div>
+        <h2 class="section-title">RSVP</h2>
+        <p class="section-intro" style="margin: 0 auto;">À compléter.</p>
+      </div>
+    </section>
+
+    <footer data-audience="member">
+      <div class="footer-ornament">
+        <span></span>
+        <div class="diamond"></div>
+        <span></span>
+      </div>
+      <p>Magali & Perceval — 11 septembre 2026</p>
+      <p style="margin-top: 6px; opacity: 0.6;"><span data-role-badge>Accès : non défini</span> · Dernière mise à jour : à compléter</p>
+    </footer>
+
+    <script>
+      window.MPAccess.mountGate();
+      window.MPAccess.mountSwitchLinks();
+      window.MPAccess.applyAudience();
+
+      const reveals = document.querySelectorAll('.reveal');
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+            }
+          });
+        },
+        { threshold: 0.12 }
+      );
+
+      reveals.forEach((el) => observer.observe(el));
+    </script>
+  </body>
+</html>
