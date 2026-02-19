@@ -12,29 +12,55 @@
   <body>
     <script src="./access.js"></script>
 
-    <nav data-audience="member">
+    <nav class="nav" id="main-nav" data-audience="member">
       <div class="nav-inner">
-        <a class="nav-brand" href="#top">Magali<span>&</span>Perceval</a>
-        <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">
-          <span></span><span></span><span></span>
-        </button>
+        <a href="#top" class="nav-brand">Magali <span class="amp">&</span> Perceval</a>
         <ul class="nav-links">
           <li><a href="#festivites">Les festivités</a></li>
           <li><a href="#transport">Transport & logement</a></li>
           <li><a href="#region">Région</a></li>
-          <li><a href="#rsvp">RSVP</a></li>
           <li><a href="#contact">Contact</a></li>
+          <li><a href="#rsvp">RSVP</a></li>
         </ul>
       </div>
     </nav>
 
+    <div class="pill" id="mobile-pill" data-audience="member">
+      <a href="#festivites" class="pill-item active">
+        <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        <span class="pill-label">Fête</span>
+      </a>
+      <div class="pill-sep"></div>
+      <a href="#transport" class="pill-item">
+        <svg viewBox="0 0 24 24"><path d="M3 13l1-4a3 3 0 0 1 3-2h10a3 3 0 0 1 3 2l1 4"/><path d="M5 13h14"/><path d="M6 17h1"/><path d="M17 17h1"/><path d="M7 17a2 2 0 1 0-4 0a2 2 0 0 0 4 0z"/><path d="M21 17a2 2 0 1 0-4 0a2 2 0 0 0 4 0z"/></svg>
+        <span class="pill-label">Accès</span>
+      </a>
+      <div class="pill-sep"></div>
+      <a href="#region" class="pill-item">
+        <svg viewBox="0 0 24 24"><path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 7 8 11.7z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span class="pill-label">Région</span>
+      </a>
+      <div class="pill-sep"></div>
+      <a href="#rsvp" class="pill-item">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <span class="pill-label">RSVP</span>
+      </a>
+      <div class="pill-sep"></div>
+      <a href="#contact" class="pill-item">
+        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span class="pill-label">Contact</span>
+      </a>
+    </div>
+
     <section class="hero" id="top" data-after-gate>
       <div class="hero-date">11 septembre 2026<br />Crillon-le-Brave</div>
-      <h1 class="hero-names">
+      <h1 class="hero-names" data-audience="locked">
         Magali
         <span class="ampersand">&</span>
         Perceval
       </h1>
+
+      <img class="gate-card" src="./images/carte%20mariage.png" alt="" loading="eager" data-audience="member" />
 
       <div class="hero-access" data-audience="locked" data-gate>
         <p class="hero-location">Provence, France</p>
@@ -242,18 +268,33 @@
               <img src="./images/mont%20ventoux%20bb.png" alt="" loading="lazy" />
             </div>
           </div>
-          <p>Vous pouvez le grimper à pied ou profiter d'une sortie vélo. Bédoin est un point de départ phare. Location vélo conseillée : à compléter (réserver en avance).</p>
+          <p>À 40 min : mythique pour les vues. Vous pouvez le grimper à pied ou profiter d'une sortie vélo. Bédoin est un point de départ phare. Location vélo conseillée : à compléter (réserver en avance).</p>
         </div>
         <div class="activity-card">
-          <h4>Balades & villages</h4>
+          <div class="activity-head">
+            <h4>Balades & villages</h4>
+            <div class="activity-illus" aria-hidden="true">
+              <img src="./images/velo.png" alt="" loading="lazy" />
+            </div>
+          </div>
           <p>Gordes, Suzette, Le Baroux... (à compléter). Balades autour du village (voir carte).</p>
         </div>
         <div class="activity-card">
-          <h4>Dégustation de vin</h4>
-          <p>La Ferme Saint Pierre, Valcombe... (appeler pour réserver).</p>
+          <div class="activity-head">
+            <h4>Dégustation de vin</h4>
+            <div class="activity-illus" aria-hidden="true">
+              <img src="./images/vignes.png" alt="" loading="lazy" />
+            </div>
+          </div>
+          <p>Vins du Ventoux, Côtes du Rhône, Beaumes-de-Venise, Gigondas... (à compléter).</p>
         </div>
         <div class="activity-card">
-          <h4>Manger / marchés</h4>
+          <div class="activity-head">
+            <h4>Manger / marchés</h4>
+            <div class="activity-illus" aria-hidden="true">
+              <img src="./images/panier%20legumes.png" alt="" loading="lazy" />
+            </div>
+          </div>
           <p>Restaurants : Le Saint Romain, Clovis & Basina, Le Six à table, Lily & Paul. Marchés : Bédoin (lundi matin), Pernes (samedi matin), Isle-sur-la-Sorgue (dimanche matin).</p>
         </div>
       </div>
@@ -383,7 +424,7 @@
         <span>Domicile : Rue Wéry 25 1050 Ixelles</span>
       </div>
       <p class="footer-credit">Designed by <a href="https://marcodb.be" target="_blank" rel="noopener">marcodb</a></p>
-      <a href="#" class="footer-gift">Liste cadeau</a>
+      <a href="#" id="cadeau" class="footer-gift">Liste cadeau</a>
       <p class="footer-switch" data-audience="member"><a href="#" data-clear-access>Changer de code</a></p>
     </footer>
 
@@ -391,6 +432,38 @@
       window.MPAccess.mountGate();
       window.MPAccess.mountSwitchLinks();
       window.MPAccess.applyAudience();
+
+      (function mountNav() {
+        const nav = document.getElementById('main-nav');
+        if (!nav) return;
+
+        window.addEventListener('scroll', () => {
+          nav.classList.toggle('scrolled', window.scrollY > 60);
+        });
+
+        const allSections = Array.from(document.querySelectorAll('section[id], footer[id]'));
+        const desktopLinks = Array.from(document.querySelectorAll('.nav-links a[href^="#"]'));
+        const pillLinks = Array.from(document.querySelectorAll('.pill-item[href^="#"]'));
+        const allLinks = desktopLinks.concat(pillLinks);
+
+        function updateActive() {
+          let current = '';
+          allSections.forEach((section) => {
+            const top = section.offsetTop - 140;
+            if (window.scrollY >= top) {
+              current = section.getAttribute('id');
+            }
+          });
+
+          if (!current) return;
+          allLinks.forEach((link) => {
+            link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+          });
+        }
+
+        window.addEventListener('scroll', updateActive);
+        updateActive();
+      })();
 
       // ─── RSVP FORM LOGIC ───
       const presenceRadios = document.querySelectorAll('input[name="presence"]');
