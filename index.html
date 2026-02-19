@@ -14,7 +14,7 @@
 
     <nav data-audience="member">
       <div class="nav-inner">
-        <a href="#top" class="nav-brand">Magali <span>&</span> Perceval</a>
+        <a class="nav-brand" href="#top">Magali<span>&</span>Perceval</a>
         <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">
           <span></span><span></span><span></span>
         </button>
@@ -23,7 +23,7 @@
           <li><a href="#transport">Transport & logement</a></li>
           <li><a href="#region">Région</a></li>
           <li><a href="#rsvp">RSVP</a></li>
-          <li><a href="#" data-clear-access>Changer de code</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
       </div>
     </nav>
@@ -370,7 +370,7 @@
     </section>
 
     <!-- FOOTER -->
-    <footer data-audience="all">
+    <footer id="contact" data-audience="all">
       <div class="footer-ornament">
         <span></span>
         <div class="diamond"></div>
@@ -383,6 +383,7 @@
       </div>
       <p class="footer-credit">Designed by <a href="https://marcodb.be" target="_blank" rel="noopener">marcodb</a></p>
       <a href="#" class="footer-gift">Liste cadeau</a>
+      <p class="footer-switch" data-audience="member"><a href="#" data-clear-access>Changer de code</a></p>
     </footer>
 
     <script>

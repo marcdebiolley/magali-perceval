@@ -1190,6 +1190,24 @@ footer:not(.site-footer) .footer-gift:hover{
   color: var(--white);
 }
 
+footer:not(.site-footer) .footer-switch{
+  margin-top: 14px;
+  font-size: 12px;
+  opacity: 0.65;
+  letter-spacing: 0.02em;
+}
+
+footer:not(.site-footer) .footer-switch a{
+  color: var(--ink-faint);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border);
+}
+
+footer:not(.site-footer) .footer-switch a:hover{
+  color: var(--wine);
+  border-bottom-color: var(--wine);
+}
+
 .footer-ornament {
   display: flex;
   align-items: center;
@@ -1256,11 +1274,60 @@ footer:not(.site-footer) p {
 
   .hero { padding: 24px; }
 
+  section,
+  .event-card,
+  .activity-card{
+    text-align: center;
+  }
+
+  .section-intro{
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .card-header{ align-items: center; }
+  .card-day,
+  .card-badge{ text-align: center; }
+  .card-body p{ text-align: center; }
+
   .ceremony-head{ flex-direction: column; gap: 10px; padding-right: 0; }
-  .ceremony-head .card-subtitle{ text-align: left; }
+  .ceremony-head .card-subtitle{ text-align: center; }
   .ceremony-illus{ position: static; margin-top: 0; }
-  .ceremony-illus img{ width: 150px; }
+  .ceremony-illus img{
+    width: 150px;
+    display:block;
+    margin: 12px auto 0;
+  }
   .ceremony-illus--large img{ width: min(420px, 100%); }
+
+  .transport-head,
+  .activity-head{
+    flex-direction: column;
+    gap: 10px;
+    padding-right: 0;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .transport-illus,
+  .activity-illus{
+    position: static;
+  }
+
+  .transport-illus img,
+  .activity-illus img{
+    display:block;
+    margin: 12px auto 0;
+  }
+
+  .transport-method h4{
+    justify-content: center;
+  }
+
+  .transport-method p{
+    padding-left: 0;
+    text-align: center;
+  }
 }
 
 @media (max-width: 480px) {
