@@ -347,6 +347,26 @@
             </div>
           </div>
 
+          <div class="form-group" id="groupe-group">
+            <label class="label-block">Faites-vous partie des jeunes &amp; fratrie ?</label>
+            <div class="radio-group">
+              <label class="radio-card">
+                <input type="radio" name="groupe" value="oui" required />
+                <span class="radio-label">
+                  <span class="radio-icon">✓</span>
+                  Oui
+                </span>
+              </label>
+              <label class="radio-card">
+                <input type="radio" name="groupe" value="non" />
+                <span class="radio-label">
+                  <span class="radio-icon">✕</span>
+                  Non
+                </span>
+              </label>
+            </div>
+          </div>
+
           <div class="form-group" id="guests-group">
             <label for="guests">Nombre de personnes (vous inclus)</label>
             <div class="stepper">
@@ -485,22 +505,44 @@
 
       // ─── RSVP FORM LOGIC ───
       const presenceRadios = document.querySelectorAll('input[name="presence"]');
+      const groupeRadios = document.querySelectorAll('input[name="groupe"]');
       const guestsGroup = document.getElementById('guests-group');
       const eventsGroup = document.getElementById('events-group');
       const allergiesGroup = document.getElementById('allergies-group');
+      const groupeGroup = document.getElementById('groupe-group');
 
       function setGroupDisplay(el, shouldShow) {
         if (!el) return;
         if (el.hidden) return;
         el.style.display = shouldShow ? 'block' : 'none';
+
+        el.querySelectorAll('input, select, textarea, button').forEach((node) => {
+          if (node.closest('.stepper')) return;
+          node.disabled = !shouldShow;
+        });
       }
 
       presenceRadios.forEach((radio) => {
         radio.addEventListener('change', () => {
           const coming = radio.value === 'oui';
+          setGroupDisplay(groupeGroup, coming);
           setGroupDisplay(guestsGroup, coming);
-          setGroupDisplay(eventsGroup, coming);
           setGroupDisplay(allergiesGroup, coming);
+
+          setGroupDisplay(eventsGroup, false);
+        });
+      });
+
+      groupeRadios.forEach((radio) => {
+        radio.addEventListener('change', () => {
+          const isJeunes = radio.value === 'oui';
+          setGroupDisplay(eventsGroup, isJeunes);
+
+          if (!isJeunes) {
+            document.querySelectorAll('input[name="events"]').forEach((cb) => {
+              cb.checked = cb.value === 'vendredi';
+            });
+          }
         });
       });
 
@@ -562,20 +604,31 @@
         });
         guestList = guestList.replace(/, $/, '') || 'Aucun';
 
-        const events = [];
-        form.querySelectorAll('input[name="events"]:checked').forEach((cb) => {
-          const labels = { jeudi: 'Jeudi', vendredi: 'Vendredi', samedi: 'Samedi' };
-          events.push(labels[cb.value] || cb.value);
-        });
+        const isJeunes = form.querySelector('input[name="groupe"]:checked');
+        let jeudi = 'Non';
+        let vendredi = 'Oui';
+        let samedi = 'Non';
+
+        if (isJeunes && isJeunes.value === 'oui') {
+          const jeudiCb = form.querySelector('input[name="events"][value="jeudi"]');
+          const vendrediCb = form.querySelector('input[name="events"][value="vendredi"]');
+          const samediCb = form.querySelector('input[name="events"][value="samedi"]');
+          jeudi = jeudiCb && jeudiCb.checked ? 'Oui' : 'Non';
+          vendredi = vendrediCb && vendrediCb.checked ? 'Oui' : 'Non';
+          samedi = samediCb && samediCb.checked ? 'Oui' : 'Non';
+        }
 
         const payload = {
           prenom: form.prenom.value,
           nom: form.nom.value,
           email: form.email.value,
           presence: form.presence.value === 'oui' ? 'Oui' : 'Non',
+          groupe: isJeunes ? (isJeunes.value === 'oui' ? 'Jeunes & fratrie' : 'Invité') : 'Invité',
           guests: form.guests.value,
           guest_list: guestList,
-          events: events.join(', ') || 'Non précisé',
+          jeudi: jeudi,
+          vendredi: vendredi,
+          samedi: samedi,
           allergies: form.allergies ? form.allergies.value || 'Aucune' : 'Aucune',
           message: form.message.value || ''
         };
@@ -606,9 +659,13 @@
 
       const selectedPresence = document.querySelector('input[name="presence"]:checked');
       const coming = selectedPresence ? selectedPresence.value === 'oui' : true;
+      setGroupDisplay(groupeGroup, coming);
       setGroupDisplay(guestsGroup, coming);
-      setGroupDisplay(eventsGroup, coming);
       setGroupDisplay(allergiesGroup, coming);
+
+      const selectedGroupe = document.querySelector('input[name="groupe"]:checked');
+      const isJeunes = selectedGroupe ? selectedGroupe.value === 'oui' : false;
+      setGroupDisplay(eventsGroup, isJeunes);
       renderGuestNames(Number(document.getElementById('guests')?.value || 1));
     </script>
   </body>
