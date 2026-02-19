@@ -435,37 +435,53 @@
         window.MPAccess.applyAudience();
       }
 
-      (function mountNav() {
-        const nav = document.getElementById('main-nav');
-        if (!nav) return;
+      const SHEET_URL = 'https://script.google.com/macros/s/AKfycbxJa_JB4_P7Z_qMoefnpt0KqOlCfii6i2RWV6Arwv8xZBGF5qjqdD5dRserOanCMvyKNA/exec';
 
+      // ═══ SCROLL REVEAL ═══
+      const reveals = document.querySelectorAll('.reveal');
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+            }
+          });
+        },
+        { threshold: 0.12 }
+      );
+      reveals.forEach((el) => observer.observe(el));
+
+      // ═══ NAV SCROLL ═══
+      const nav = document.getElementById('main-nav');
+      if (nav) {
         window.addEventListener('scroll', () => {
           nav.classList.toggle('scrolled', window.scrollY > 60);
         });
+      }
 
-        const allSections = Array.from(document.querySelectorAll('section[id], footer[id]'));
-        const desktopLinks = Array.from(document.querySelectorAll('.nav-links a[href^="#"]'));
-        const pillLinks = Array.from(document.querySelectorAll('.pill-item[href^="#"]'));
-        const allLinks = desktopLinks.concat(pillLinks);
+      // ═══ SCROLL SPY ═══
+      const allSections = document.querySelectorAll('section[id], footer[id]');
+      const desktopLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+      const pillLinks = document.querySelectorAll('.pill-item[href^="#"]');
 
-        function updateActive() {
-          let current = '';
-          allSections.forEach((section) => {
-            const top = section.offsetTop - 140;
-            if (window.scrollY >= top) {
-              current = section.getAttribute('id');
-            }
-          });
+      function updateActive() {
+        let current = '';
+        allSections.forEach((section) => {
+          const top = section.offsetTop - 140;
+          if (window.scrollY >= top) {
+            current = section.getAttribute('id');
+          }
+        });
+        desktopLinks.forEach((link) => {
+          link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+        });
+        pillLinks.forEach((link) => {
+          link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+        });
+      }
 
-          if (!current) return;
-          allLinks.forEach((link) => {
-            link.classList.toggle('active', link.getAttribute('href') === '#' + current);
-          });
-        }
-
-        window.addEventListener('scroll', updateActive);
-        updateActive();
-      })();
+      window.addEventListener('scroll', updateActive);
+      updateActive();
 
       // ─── RSVP FORM LOGIC ───
       const presenceRadios = document.querySelectorAll('input[name="presence"]');
@@ -534,13 +550,55 @@
         if (btnLoader) btnLoader.style.display = 'inline-flex';
         if (btn) btn.disabled = true;
 
-        // Simulation (à remplacer) :
-        setTimeout(() => {
-          const form = document.getElementById('rsvp-form');
-          const success = document.getElementById('rsvp-success');
-          if (form) form.style.display = 'none';
-          if (success) success.style.display = 'block';
-        }, 1500);
+        const form = document.getElementById('rsvp-form');
+        if (!form) return;
+
+        let guestList = '';
+        document.querySelectorAll('.guest-name-row').forEach((row) => {
+          const inputs = row.querySelectorAll('input');
+          if (inputs[0].value && inputs[1].value) {
+            guestList += inputs[0].value + ' ' + inputs[1].value + ', ';
+          }
+        });
+        guestList = guestList.replace(/, $/, '') || 'Aucun';
+
+        const events = [];
+        form.querySelectorAll('input[name="events"]:checked').forEach((cb) => {
+          const labels = { jeudi: 'Jeudi', vendredi: 'Vendredi', samedi: 'Samedi' };
+          events.push(labels[cb.value] || cb.value);
+        });
+
+        const payload = {
+          prenom: form.prenom.value,
+          nom: form.nom.value,
+          email: form.email.value,
+          presence: form.presence.value === 'oui' ? 'Oui' : 'Non',
+          guests: form.guests.value,
+          guest_list: guestList,
+          events: events.join(', ') || 'Non précisé',
+          allergies: form.allergies ? form.allergies.value || 'Aucune' : 'Aucune',
+          message: form.message.value || ''
+        };
+
+        fetch(SHEET_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        })
+          .then(() => {
+            const success = document.getElementById('rsvp-success');
+            form.style.display = 'none';
+            if (success) success.style.display = 'block';
+          })
+          .catch(() => {
+            if (btnText) {
+              btnText.textContent = 'Erreur, réessayer';
+              btnText.style.display = 'inline';
+            }
+            if (btnLoader) btnLoader.style.display = 'none';
+            if (btn) btn.disabled = false;
+          });
       }
 
       window.updateGuests = updateGuests;
@@ -552,20 +610,6 @@
       setGroupDisplay(eventsGroup, coming);
       setGroupDisplay(allergiesGroup, coming);
       renderGuestNames(Number(document.getElementById('guests')?.value || 1));
-
-      const reveals = document.querySelectorAll('.reveal');
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('visible');
-            }
-          });
-        },
-        { threshold: 0.12 }
-      );
-
-      reveals.forEach((el) => observer.observe(el));
     </script>
   </body>
 </html>

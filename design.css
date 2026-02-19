@@ -517,7 +517,7 @@ body {
 
 .gate-card{
   display: block;
-  width: min(1100px, 100%);
+  width: min(1100px, 80%);
   height: auto;
   margin: 0 auto 18px;
   border-radius: 18px;
