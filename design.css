@@ -150,9 +150,14 @@ nav .nav-inner {
   letter-spacing: 0.3em;
   text-transform: uppercase;
   color: var(--gold);
-  margin-bottom: 28px;
+  display: block;
+  margin-bottom: 40px;
   opacity: 0;
   animation: fadeUp 1s ease 0.2s forwards;
+}
+
+.hero-date:last-of-type {
+  margin-bottom: 28px;
 }
 
 .hero-names {
@@ -1103,6 +1108,17 @@ section {
   font-size: 14px;
 }
 
+.tip-box a{
+  color: var(--wine);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border);
+  transition: color 0.3s, border-color 0.3s;
+}
+
+.tip-box a:hover{
+  border-color: var(--wine);
+}
+
 footer:not(.site-footer) {
   max-width: 800px;
   margin: 0 auto;
@@ -1191,9 +1207,9 @@ footer:not(.site-footer) .footer-gift:hover{
 }
 
 footer:not(.site-footer) .footer-switch{
-  margin-top: 14px;
-  font-size: 12px;
-  opacity: 0.65;
+  margin-top: 22px;
+  font-size: 11px;
+  opacity: 0.55;
   letter-spacing: 0.02em;
 }
 
@@ -1201,11 +1217,12 @@ footer:not(.site-footer) .footer-switch a{
   color: var(--ink-faint);
   text-decoration: none;
   border-bottom: 1px solid var(--border);
+  transition: color 0.3s, border-color 0.3s;
 }
 
 footer:not(.site-footer) .footer-switch a:hover{
   color: var(--wine);
-  border-bottom-color: var(--wine);
+  border-color: var(--wine);
 }
 
 .footer-ornament {
@@ -1268,7 +1285,10 @@ footer:not(.site-footer) p {
   .divider { padding: 0 24px; }
 
   .event-card { padding: 36px; }
-  .info-grid { grid-template-columns: 100px 1fr; gap: 6px 16px; }
+  .info-grid { grid-template-columns: 1fr; gap: 6px; justify-items: center; }
+  .info-label,
+  .info-value{ text-align: center; }
+  .card-subtitle{ text-align: center; }
   .activity-grid { grid-template-columns: 1fr; }
   .lodging-grid { grid-template-columns: 1fr 1fr; }
 
@@ -1291,8 +1311,8 @@ footer:not(.site-footer) p {
   .card-body p{ text-align: center; }
 
   .ceremony-head{ flex-direction: column; gap: 10px; padding-right: 0; }
-  .ceremony-head .card-subtitle{ text-align: center; }
-  .ceremony-illus{ position: static; margin-top: 0; }
+  .ceremony-head .card-subtitle{ text-align: center; width: 100%; }
+  .ceremony-illus{ position: static; margin-top: 0; width: 100%; display: flex; justify-content: center; }
   .ceremony-illus img{
     width: 150px;
     display:block;
@@ -1312,7 +1332,12 @@ footer:not(.site-footer) p {
   .transport-illus,
   .activity-illus{
     position: static;
+    width: 100%;
+    display: flex;
+    justify-content: center;
   }
+
+  .transport-illus{ margin-bottom: 20px; }
 
   .transport-illus img,
   .activity-illus img{
