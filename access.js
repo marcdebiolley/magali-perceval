@@ -4,8 +4,8 @@
   const YOUNG_ROLE = 'young';
   const GUEST_ROLE = 'guest';
 
-  const YOUNG_CODE = 'JEUNES2026';
-  const GUEST_CODE = 'INVITES2026';
+  const YOUNG_CODE = 'magalietperceval';
+  const GUEST_CODE = 'crillon2026';
 
   function getRole() {
     try {

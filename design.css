@@ -1103,18 +1103,18 @@ section {
 }
 
 .event-card {
-  background: var(--white);
+  background: transparent;
   border-radius: 12px;
   padding: 54px;
   margin-bottom: 40px;
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow-sm);
+  border: none;
+  box-shadow: none;
   transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
 .event-card:hover {
-  box-shadow: var(--shadow-md);
-  transform: translateY(-1px);
+  box-shadow: none;
+  transform: none;
 }
 
 .card-header {
@@ -1418,6 +1418,27 @@ section {
   font-size: 18px;
   color: var(--ink-light);
   line-height: 1.85;
+}
+
+.activity-card ul{
+  margin: 14px 0 0;
+  padding-left: 36px;
+  text-align: left;
+}
+
+.activity-card li{
+  margin: 8px 0;
+  color: var(--ink-light);
+  line-height: 1.7;
+}
+
+.activity-card li::marker{
+  color: var(--wine);
+}
+
+.activity-card li strong{
+  font-weight: 700;
+  color: var(--ink);
 }
 
 .tip-box {
