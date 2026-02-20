@@ -3,7 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Magali & Perceval — 11.09.2026</title>
+    <title>Mariage de Magali & Perceval</title>
+    <link rel="icon" href="./images/branche%20olive.png" type="image/png" />
+    <link rel="apple-touch-icon" href="./images/branche%20olive.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -347,37 +349,7 @@
             </div>
           </div>
 
-          <div class="form-group" id="groupe-group">
-            <label class="label-block">Faites-vous partie des jeunes &amp; fratrie ?</label>
-            <div class="radio-group">
-              <label class="radio-card">
-                <input type="radio" name="groupe" value="oui" required />
-                <span class="radio-label">
-                  <span class="radio-icon">✓</span>
-                  Oui
-                </span>
-              </label>
-              <label class="radio-card">
-                <input type="radio" name="groupe" value="non" />
-                <span class="radio-label">
-                  <span class="radio-icon">✕</span>
-                  Non
-                </span>
-              </label>
-            </div>
-          </div>
-
-          <div class="form-group" id="guests-group">
-            <label for="guests">Nombre de personnes (vous inclus)</label>
-            <div class="stepper">
-              <button type="button" class="stepper-btn" onclick="updateGuests(-1)">−</button>
-              <input type="number" id="guests" name="guests" value="1" min="1" max="10" readonly />
-              <button type="button" class="stepper-btn" onclick="updateGuests(1)">+</button>
-            </div>
-            <div id="guest-names"></div>
-          </div>
-
-          <div class="form-group" id="events-group" data-audience="young">
+          <div class="form-group" id="events-group" data-audience="young" style="display:none;">
             <label class="label-block">À quels moments serez-vous présent(e) ?</label>
             <div class="checkbox-group">
               <label class="checkbox-card">
@@ -388,7 +360,7 @@
                 </span>
               </label>
               <label class="checkbox-card">
-                <input type="checkbox" name="events" value="vendredi" checked />
+                <input type="checkbox" name="events" value="vendredi" checked disabled />
                 <span class="checkbox-label">
                   <span class="checkbox-day">Vendredi</span>
                   <span class="checkbox-desc">Cérémonie & soirée</span>
@@ -404,7 +376,7 @@
             </div>
           </div>
 
-          <div class="form-group" id="allergies-group">
+          <div class="form-group" id="allergies-group" style="display:none;">
             <label for="allergies">Allergies ou régime alimentaire</label>
             <input type="text" id="allergies" name="allergies" placeholder="Végétarien, sans gluten, etc." />
           </div>
@@ -441,6 +413,8 @@
       <div class="footer-contacts">
         <a href="tel:+32479947943">Magali : +32 479 94 79 43</a>
         <a href="tel:+32490649129">Perceval : +32 490 64 91 29</a>
+        <span class="footer-break" aria-hidden="true"></span>
+        <a href="mailto:crillon.septembre@gmail.com">crillon.septembre@gmail.com</a>
         <span>Domicile : Rue Wéry 25 1050 Ixelles</span>
       </div>
       <p class="footer-credit">Designed by <a href="https://marcodb.be" target="_blank" rel="noopener">marcodb</a></p>
@@ -455,7 +429,18 @@
         window.MPAccess.applyAudience();
       }
 
-      const SHEET_URL = 'https://script.google.com/macros/s/AKfycbxJa_JB4_P7Z_qMoefnpt0KqOlCfii6i2RWV6Arwv8xZBGF5qjqdD5dRserOanCMvyKNA/exec';
+      const SHEET_URL = 'https://script.google.com/macros/s/AKfycbzqt5-3kdk-SQjFFr6bhQQXFquAEBRfIavgwFezpeQnQ8T_HgJAHj9neNtO-oIx9a_HTg/exec';
+
+      var USER_TYPE = (function () {
+        try {
+          var fromBody = (document.body.dataset.userType || '').toLowerCase();
+          if (fromBody) return fromBody;
+          var role = window.localStorage.getItem('mp_access_role');
+          return role === 'young' ? 'jeune' : 'invite';
+        } catch (e) {
+          return 'invite';
+        }
+      })();
 
       // ═══ SCROLL REVEAL ═══
       const reveals = document.querySelectorAll('.reveal');
@@ -505,132 +490,99 @@
 
       // ─── RSVP FORM LOGIC ───
       const presenceRadios = document.querySelectorAll('input[name="presence"]');
-      const groupeRadios = document.querySelectorAll('input[name="groupe"]');
-      const guestsGroup = document.getElementById('guests-group');
       const eventsGroup = document.getElementById('events-group');
       const allergiesGroup = document.getElementById('allergies-group');
-      const groupeGroup = document.getElementById('groupe-group');
 
       function setGroupDisplay(el, shouldShow) {
         if (!el) return;
-        if (el.hidden) return;
-        el.style.display = shouldShow ? 'block' : 'none';
+
+        const isHiddenByAudience = !!el.hidden;
+        const finalShow = isHiddenByAudience ? false : shouldShow;
+
+        if (!isHiddenByAudience) {
+          el.style.display = finalShow ? 'block' : 'none';
+        }
 
         el.querySelectorAll('input, select, textarea, button').forEach((node) => {
           if (node.closest('.stepper')) return;
-          node.disabled = !shouldShow;
+          node.disabled = !finalShow;
         });
+      }
+
+      function enforceFridayLock(isComing) {
+        const vendrediCb = document.querySelector('input[name="events"][value="vendredi"]');
+        if (!vendrediCb) return;
+
+        if (!vendrediCb.dataset.locked) {
+          vendrediCb.addEventListener('change', () => {
+            if (!vendrediCb.checked) vendrediCb.checked = true;
+          });
+          vendrediCb.dataset.locked = '1';
+        }
+
+        if (isComing) {
+          vendrediCb.checked = true;
+          vendrediCb.disabled = true;
+        } else {
+          vendrediCb.disabled = false;
+          vendrediCb.checked = false;
+        }
       }
 
       presenceRadios.forEach((radio) => {
         radio.addEventListener('change', () => {
           const coming = radio.value === 'oui';
-          setGroupDisplay(groupeGroup, coming);
-          setGroupDisplay(guestsGroup, coming);
           setGroupDisplay(allergiesGroup, coming);
 
-          setGroupDisplay(eventsGroup, false);
+          setGroupDisplay(eventsGroup, coming && USER_TYPE === 'jeune');
+          enforceFridayLock(coming && USER_TYPE === 'jeune');
         });
       });
-
-      groupeRadios.forEach((radio) => {
-        radio.addEventListener('change', () => {
-          const isJeunes = radio.value === 'oui';
-          setGroupDisplay(eventsGroup, isJeunes);
-
-          if (!isJeunes) {
-            document.querySelectorAll('input[name="events"]').forEach((cb) => {
-              cb.checked = cb.value === 'vendredi';
-            });
-          }
-        });
-      });
-
-      function updateGuests(delta) {
-        const input = document.getElementById('guests');
-        if (!input) return;
-        let val = parseInt(input.value) + delta;
-        val = Math.max(1, Math.min(10, val));
-        input.value = val;
-        renderGuestNames(val);
-      }
-
-      function renderGuestNames(count) {
-        const container = document.getElementById('guest-names');
-        if (!container) return;
-        const existing = {};
-        container.querySelectorAll('.guest-name-row').forEach((row) => {
-          const idx = row.dataset.index;
-          const inputs = row.querySelectorAll('input');
-          existing[idx] = { prenom: inputs[0].value, nom: inputs[1].value };
-        });
-
-        container.innerHTML = '';
-
-        for (let i = 2; i <= count; i++) {
-          const row = document.createElement('div');
-          row.className = 'guest-name-row';
-          row.dataset.index = i;
-          row.style.animationDelay = (i - 2) * 0.05 + 's';
-          const prev = existing[i] || { prenom: '', nom: '' };
-          row.innerHTML = `
-      <span class="guest-number">${i}</span>
-      <input type="text" name="guest_prenom_${i}" placeholder="Prénom" value="${prev.prenom}" required>
-      <input type="text" name="guest_nom_${i}" placeholder="Nom" value="${prev.nom}" required>
-    `;
-          container.appendChild(row);
-        }
-      }
 
       function handleRSVP(e) {
         e.preventDefault();
-        const btn = document.getElementById('btn-submit');
-        const btnText = btn ? btn.querySelector('.btn-text') : null;
-        const btnLoader = btn ? btn.querySelector('.btn-loader') : null;
+        var btn = document.getElementById('btn-submit');
+        var btnText = btn.querySelector('.btn-text');
+        var btnLoader = btn.querySelector('.btn-loader');
 
-        if (btnText) btnText.style.display = 'none';
-        if (btnLoader) btnLoader.style.display = 'inline-flex';
-        if (btn) btn.disabled = true;
+        btnText.style.display = 'none';
+        btnLoader.style.display = 'inline-flex';
+        btn.disabled = true;
 
-        const form = document.getElementById('rsvp-form');
-        if (!form) return;
+        var form = document.getElementById('rsvp-form');
+        var coming = form.querySelector('input[name="presence"]:checked');
+        var isComing = coming && coming.value === 'oui';
 
-        let guestList = '';
-        document.querySelectorAll('.guest-name-row').forEach((row) => {
-          const inputs = row.querySelectorAll('input');
-          if (inputs[0].value && inputs[1].value) {
-            guestList += inputs[0].value + ' ' + inputs[1].value + ', ';
-          }
-        });
-        guestList = guestList.replace(/, $/, '') || 'Aucun';
+        var jeudiEl = form.querySelector('input[name="events"][value="jeudi"]');
+        var samediEl = form.querySelector('input[name="events"][value="samedi"]');
 
-        const isJeunes = form.querySelector('input[name="groupe"]:checked');
-        let jeudi = 'Non';
-        let vendredi = 'Oui';
-        let samedi = 'Non';
+        var jeudi = 'Non';
+        var vendredi = isComing ? 'Oui' : 'Non';
+        var samedi = 'Non';
 
-        if (isJeunes && isJeunes.value === 'oui') {
-          const jeudiCb = form.querySelector('input[name="events"][value="jeudi"]');
-          const vendrediCb = form.querySelector('input[name="events"][value="vendredi"]');
-          const samediCb = form.querySelector('input[name="events"][value="samedi"]');
-          jeudi = jeudiCb && jeudiCb.checked ? 'Oui' : 'Non';
-          vendredi = vendrediCb && vendrediCb.checked ? 'Oui' : 'Non';
-          samedi = samediCb && samediCb.checked ? 'Oui' : 'Non';
+        if (isComing) {
+          if (jeudiEl) jeudi = jeudiEl.checked ? 'Oui' : 'Non';
+          if (samediEl) samedi = samediEl.checked ? 'Oui' : 'Non';
         }
 
-        const payload = {
+        var allergiesInput = document.getElementById('allergies');
+        var allergiesVal = allergiesInput ? allergiesInput.value || 'Aucune' : 'Aucune';
+
+        var messageInput = document.getElementById('message');
+        var messageVal = messageInput ? messageInput.value : '';
+
+        var payload = {
           prenom: form.prenom.value,
           nom: form.nom.value,
           email: form.email.value,
-          presence: form.presence.value === 'oui' ? 'Oui' : 'Non',
-          groupe: isJeunes ? (isJeunes.value === 'oui' ? 'Jeunes & fratrie' : 'Invité') : 'Invité',
-          guests: form.guests.value,
-          guest_list: guestList,
+          presence: isComing ? 'Oui' : 'Non',
+          nb_personnes: isComing ? '1' : '0',
+          accompagnants: 'Aucun',
           jeudi: jeudi,
           vendredi: vendredi,
           samedi: samedi,
-          allergies: form.allergies ? form.allergies.value || 'Aucune' : 'Aucune',
-          message: form.message.value || ''
+          allergies: isComing ? allergiesVal : '',
+          message: messageVal
         };
 
         fetch(SHEET_URL, {
@@ -638,35 +590,25 @@
           mode: 'no-cors',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
-        })
-          .then(() => {
-            const success = document.getElementById('rsvp-success');
-            form.style.display = 'none';
-            if (success) success.style.display = 'block';
-          })
-          .catch(() => {
-            if (btnText) {
-              btnText.textContent = 'Erreur, réessayer';
-              btnText.style.display = 'inline';
-            }
-            if (btnLoader) btnLoader.style.display = 'none';
-            if (btn) btn.disabled = false;
-          });
+        }).then(function() {
+          form.style.display = 'none';
+          document.getElementById('rsvp-success').style.display = 'block';
+        }).catch(function() {
+          btnText.textContent = 'Erreur, réessayer';
+          btnText.style.display = 'inline';
+          btnLoader.style.display = 'none';
+          btn.disabled = false;
+        });
       }
 
-      window.updateGuests = updateGuests;
       window.handleRSVP = handleRSVP;
 
       const selectedPresence = document.querySelector('input[name="presence"]:checked');
-      const coming = selectedPresence ? selectedPresence.value === 'oui' : true;
-      setGroupDisplay(groupeGroup, coming);
-      setGroupDisplay(guestsGroup, coming);
+      const coming = selectedPresence ? selectedPresence.value === 'oui' : false;
       setGroupDisplay(allergiesGroup, coming);
 
-      const selectedGroupe = document.querySelector('input[name="groupe"]:checked');
-      const isJeunes = selectedGroupe ? selectedGroupe.value === 'oui' : false;
-      setGroupDisplay(eventsGroup, isJeunes);
-      renderGuestNames(Number(document.getElementById('guests')?.value || 1));
+      setGroupDisplay(eventsGroup, coming && USER_TYPE === 'jeune');
+      enforceFridayLock(coming && USER_TYPE === 'jeune');
     </script>
   </body>
 </html>
