@@ -547,6 +547,70 @@ body {
 
 .gate-wrap { margin-top: 18px; }
 
+.gate-card-link{
+  display: block;
+  width: fit-content;
+  margin: 0 auto;
+  text-decoration: none;
+  border: none;
+  cursor: zoom-in;
+}
+
+.gate-lightbox{
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+}
+
+.gate-lightbox-backdrop{
+  position: absolute;
+  inset: 0;
+  background: rgba(31, 42, 29, 0.86);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+.gate-lightbox-dialog{
+  position: relative;
+  z-index: 1;
+  width: min(980px, calc(100vw - 32px));
+  max-height: calc(100vh - 32px);
+  margin: 16px auto;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gate-lightbox-img{
+  width: 100%;
+  height: auto;
+  max-height: calc(100vh - 64px);
+  object-fit: contain;
+  border-radius: 18px;
+  box-shadow: var(--shadow-md);
+}
+
+.gate-lightbox-close{
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 253, 248, 0.22);
+  background: rgba(31, 42, 29, 0.72);
+  color: var(--white);
+  cursor: pointer;
+  font: inherit;
+  line-height: 1;
+}
+
+.gate-lightbox-close:hover{
+  border-color: rgba(255, 253, 248, 0.34);
+  background: rgba(31, 42, 29, 0.82);
+}
+
 .gate-card{
   display: block;
   width: min(1100px, 80%);
@@ -554,6 +618,12 @@ body {
   margin: 0 auto 18px;
   border-radius: 18px;
   box-shadow: var(--shadow-md);
+}
+
+@media (max-width: 720px) {
+  .gate-card{
+    width: min(1100px, 94%);
+  }
 }
 
 .gate-form { max-width: 460px; margin: 0 auto; }

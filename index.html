@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./design.css?v=20260222-5" />
+    <link rel="stylesheet" href="./design.css?v=20260223-3" />
   </head>
   <body>
     <script src="./access.js"></script>
@@ -62,7 +62,9 @@
         Perceval
       </h1>
 
-      <img class="gate-card" src="./images/carte%20mariage.png" alt="" loading="eager" data-audience="member" />
+      <a class="gate-card-link" href="./images/carte%20mariage.png" data-gate-card-open data-audience="member">
+        <img class="gate-card" src="./images/carte%20mariage.png" alt="" loading="eager" />
+      </a>
 
       <div class="hero-access" data-audience="locked" data-gate>
         <p class="hero-location">Provence, France</p>
@@ -441,12 +443,62 @@
       <p class="footer-switch" data-audience="member"><a href="#" data-clear-access>Changer de code</a></p>
     </footer>
 
+    <div class="gate-lightbox" id="gate-lightbox" hidden aria-hidden="true">
+      <div class="gate-lightbox-backdrop" data-gate-lightbox-close></div>
+      <div class="gate-lightbox-dialog" role="dialog" aria-modal="true" aria-label="Aperçu de la carte">
+        <button type="button" class="gate-lightbox-close" data-gate-lightbox-close aria-label="Fermer">✕</button>
+        <img class="gate-lightbox-img" src="" alt="" />
+      </div>
+    </div>
+
     <script>
       if (window.MPAccess) {
         window.MPAccess.mountGate();
         window.MPAccess.mountSwitchLinks();
         window.MPAccess.applyAudience();
       }
+
+      (function () {
+        const openLink = document.querySelector('[data-gate-card-open]');
+        const lightbox = document.getElementById('gate-lightbox');
+        if (!openLink || !lightbox) return;
+
+        const dialogImg = lightbox.querySelector('.gate-lightbox-img');
+        const closeNodes = lightbox.querySelectorAll('[data-gate-lightbox-close]');
+
+        function openGateLightbox() {
+          const href = openLink.getAttribute('href');
+          if (!href || !dialogImg) return;
+          dialogImg.src = href;
+          lightbox.hidden = false;
+          lightbox.setAttribute('aria-hidden', 'false');
+          document.documentElement.style.overflow = 'hidden';
+        }
+
+        function closeGateLightbox() {
+          lightbox.hidden = true;
+          lightbox.setAttribute('aria-hidden', 'true');
+          if (dialogImg) dialogImg.src = '';
+          document.documentElement.style.overflow = '';
+        }
+
+        openLink.addEventListener('click', (e) => {
+          e.preventDefault();
+          openGateLightbox();
+        });
+
+        closeNodes.forEach((node) => {
+          node.addEventListener('click', (e) => {
+            e.preventDefault();
+            closeGateLightbox();
+          });
+        });
+
+        window.addEventListener('keydown', (e) => {
+          if (lightbox.hidden) return;
+          if (e.key === 'Escape') closeGateLightbox();
+        });
+      })();
 
       const SHEET_URL = 'https://script.google.com/macros/s/AKfycbzqt5-3kdk-SQjFFr6bhQQXFquAEBRfIavgwFezpeQnQ8T_HgJAHj9neNtO-oIx9a_HTg/exec';
 
