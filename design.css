@@ -310,31 +310,31 @@ body {
   position: absolute;
   right: -5px;
   top: 50%;
-  transform: translateY(-50%);
-  width: 2px;
-  height: 2px;
-  border-radius: 50%;
+  width: 3px;
+  height: 3px;
   background: var(--border);
+  border-radius: 999px;
+  transform: translateY(-50%);
 }
 
 /* RSVP special link */
-.nav-links li:last-child a {
+.nav-links a[href="#rsvp"] {
   background: var(--wine);
   color: var(--white);
   padding: 8px 20px;
-  border-radius: 24px;
-  font-weight: 500;
+  border-radius: 999px;
+  text-transform: uppercase;
   letter-spacing: 0.08em;
 }
 
-.nav-links li:last-child a::after { display: none; }
+.nav-links a[href="#rsvp"]::after { display: none; }
 
-.nav-links li:last-child a:hover {
+.nav-links a[href="#rsvp"]:hover {
   background: var(--wine-light);
   color: var(--white);
 }
 
-.nav-links li:last-child a.active {
+.nav-links a[href="#rsvp"].active {
   background: var(--wine);
   color: var(--white);
 }
@@ -374,8 +374,8 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 52px;
-  height: 52px;
+  width: 62px;
+  height: 56px;
   border-radius: 26px;
   text-decoration: none;
   position: relative;
@@ -398,14 +398,17 @@ body {
 }
 
 .pill-item .pill-label {
-  font-size: 8px;
+  font-size: 7px;
   font-weight: 500;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: rgba(254, 252, 248, 0.35);
   margin-top: 2px;
   transition: color 0.3s;
-  line-height: 1;
+  line-height: 1.15;
+  text-align: center;
+  max-width: 56px;
+  white-space: normal;
 }
 
 .pill-item:hover svg,
@@ -479,13 +482,12 @@ body {
 
 .hero-date {
   font-family: inherit;
-  font-size: 12px;
-  font-weight: 400;
-  letter-spacing: 0.3em;
+  font-size: clamp(18px, 2.2vw, 28px);
+  font-weight: 500;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--ink-light);
-  display: block;
-  margin-bottom: 40px;
+  color: var(--ink-faint);
+  margin-bottom: 22px;
   opacity: 0;
   animation: fadeUp 1s ease 0.2s forwards;
 }
@@ -496,11 +498,11 @@ body {
 
 .hero-names {
   font-family: 'Cormorant Garamond', serif;
-  font-weight: 300;
-  font-size: clamp(48px, 8vw, 96px);
-  color: var(--wine);
-  line-height: 1.1;
-  letter-spacing: -0.02em;
+  font-weight: 500;
+  font-size: clamp(72px, 11vw, 156px);
+  line-height: 0.92;
+  letter-spacing: 0.01em;
+  margin: 0 0 18px;
   opacity: 0;
   animation: fadeUp 1s ease 0.4s forwards;
 }
@@ -512,8 +514,18 @@ body {
   font-style: italic;
   font-size: 0.5em;
   color: var(--gold);
-  margin-top: 40px;
+  margin: 6px 0 8px;
   transform: translateX(2px);
+}
+
+.hero-intro{
+  margin: 12px auto 0;
+  max-width: 880px;
+  font-size: clamp(18px, 2.1vw, 24px);
+  line-height: 1.55;
+  color: var(--ink);
+  opacity: 0;
+  animation: fadeUp 1s ease 0.55s forwards;
 }
 
 .hero-location {
@@ -523,6 +535,42 @@ body {
   letter-spacing: 0.06em;
   opacity: 0;
   animation: fadeUp 1s ease 0.6s forwards;
+}
+
+.hero-decor{
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.hero-decor-img{
+  position: absolute;
+  width: 140px;
+  height: auto;
+  opacity: 0.28;
+  filter: saturate(0.95);
+}
+
+.hero-decor-img--tomato{
+  top: 90px;
+  left: 18px;
+  transform: rotate(-10deg);
+}
+
+.hero-decor-img--garlic{
+  bottom: 90px;
+  right: 18px;
+  transform: rotate(8deg);
+}
+
+@media (max-width: 720px) {
+  .hero-decor-img{
+    width: 92px;
+    opacity: 0.22;
+  }
+
+  .hero-decor-img--tomato{ top: 76px; left: 10px; }
+  .hero-decor-img--garlic{ bottom: 76px; right: 10px; }
 }
 
 .hero-scroll {
@@ -971,10 +1019,9 @@ body {
 
 #rsvp .success-title{
   font-family: 'Cormorant Garamond', serif;
-  font-weight: 500;
-  font-size: 32px;
-  color: var(--wine);
-  margin-bottom: 12px;
+  font-weight: 600;
+  font-size: clamp(36px, 4.2vw, 56px);
+  margin-bottom: 16px;
 }
 
 #rsvp .success-text{
@@ -1156,6 +1203,59 @@ section {
   max-width: 1200px;
   margin: 0 auto;
   padding: 130px 40px;
+  position: relative;
+}
+
+footer.site-footer,
+footer#contact{
+  position: relative;
+}
+
+.section-decor{
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+section > *:not(.section-decor){
+  position: relative;
+  z-index: 1;
+}
+
+footer#contact > *:not(.section-decor){
+  position: relative;
+  z-index: 1;
+}
+
+.section-decor-img{
+  position: absolute;
+  width: 110px;
+  height: auto;
+  opacity: 0.14;
+  filter: saturate(0.95);
+}
+
+.section-decor--tr .section-decor-img--tomato{ top: 22px; right: 22px; transform: rotate(10deg); }
+.section-decor--tr .section-decor-img--garlic{ top: 98px; right: 46px; transform: rotate(-8deg); }
+
+.section-decor--tl .section-decor-img--tomato{ top: 22px; left: 22px; transform: rotate(-10deg); }
+.section-decor--tl .section-decor-img--garlic{ top: 98px; left: 46px; transform: rotate(8deg); }
+
+.section-decor--bl .section-decor-img--garlic{ bottom: 28px; left: 22px; transform: rotate(8deg); }
+.section-decor--bl .section-decor-img--tomato{ bottom: 104px; left: 46px; transform: rotate(-10deg); }
+
+.section-decor--br .section-decor-img--garlic{ bottom: 28px; right: 22px; transform: rotate(-8deg); }
+.section-decor--br .section-decor-img--tomato{ bottom: 104px; right: 46px; transform: rotate(10deg); }
+
+.section-decor--center .section-decor-img--tomato{ top: 18px; left: 50%; transform: translateX(-110%) rotate(-8deg); }
+.section-decor--center .section-decor-img--garlic{ top: 18px; left: 50%; transform: translateX(10%) rotate(8deg); }
+
+@media (max-width: 720px) {
+  .section-decor-img{
+    width: 80px;
+    opacity: 0.11;
+  }
 }
 
 .section-label {
@@ -1170,8 +1270,8 @@ section {
 
 .section-title {
   font-family: 'Cormorant Garamond', serif;
-  font-weight: 400;
-  font-size: clamp(38px, 6vw, 56px);
+  font-weight: 600;
+  font-size: clamp(48px, 6.4vw, 72px);
   color: var(--wine);
   text-align: center;
   margin-bottom: 16px;
@@ -1187,10 +1287,27 @@ section {
   margin-bottom: 78px;
 }
 
+.festivites-illus{
+  display:flex;
+  justify-content:center;
+  margin: -32px 0 58px;
+}
+
+.festivites-illus img{
+  width: min(720px, 100%);
+  height: auto;
+  opacity: 0.95;
+}
+
 #transport .section-intro{
-  font-size: 19px;
-  line-height: 1.95;
+  font-size: 17px;
+  line-height: 1.9;
   margin-bottom: 92px;
+}
+
+#transport .section-intro.transport-lead{
+  max-width: none;
+  text-align: center;
 }
 
 .divider {
@@ -1230,8 +1347,8 @@ section {
 
 .card-day {
   font-family: 'Cormorant Garamond', serif;
-  font-weight: 500;
-  font-size: 26px;
+  font-weight: 600;
+  font-size: clamp(26px, 2.8vw, 38px);
   color: var(--wine);
 }
 
@@ -1258,8 +1375,8 @@ section {
 
 .card-subtitle {
   font-family: 'Cormorant Garamond', serif;
-  font-weight: 500;
-  font-size: 22px;
+  font-weight: 600;
+  font-size: clamp(24px, 2.6vw, 34px);
   color: var(--wine);
   margin: 38px 0 18px;
 }
@@ -1268,10 +1385,11 @@ section {
   position: relative;
   display:flex;
   align-items:flex-start;
-  justify-content:flex-start;
+  justify-content: space-between;
   gap: 20px;
-  margin: 0 0 12px;
   padding-right: 170px;
+  min-height: 150px;
+  margin-bottom: 16px;
 }
 
 .ceremony-head .card-subtitle{
@@ -1324,14 +1442,15 @@ section {
   padding-top: 2px;
 }
 
-.info-value {
+.info-value{
   color: var(--ink);
   font-weight: 400;
 }
 
 .info-value a {
   color: var(--wine);
-  text-decoration: none;
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
 .info-value a:hover { text-decoration: underline; }
@@ -1340,10 +1459,11 @@ section {
 
 .transport-block h3 {
   font-family: 'Cormorant Garamond', serif;
-  font-weight: 500;
-  font-size: 36px;
-  color: var(--ink);
-  margin-bottom: 28px;
+  font-weight: 600;
+  font-size: clamp(38px, 4.8vw, 62px);
+  color: var(--wine);
+  text-align: left;
+  margin-bottom: 24px;
 }
 
 .transport-method { margin-bottom: 24px; }
@@ -1373,12 +1493,12 @@ section {
 
 .transport-method h4 {
   font-family: 'Cormorant Garamond', serif;
-  font-weight: 500;
-  font-size: 22px;
+  font-weight: 600;
+  font-size: clamp(22px, 2.4vw, 30px);
   color: var(--wine);
-  margin-bottom: 10px;
-  display: flex;
+  display:flex;
   align-items: center;
+  justify-content: flex-start;
   gap: 8px;
 }
 
@@ -1405,11 +1525,11 @@ section {
 }
 
 .transport-method h4::before {
-  content: '';
+  content: '•';
   display: inline-block;
-  width: 16px;
-  height: 1px;
-  background: var(--gold);
+  margin-right: 10px;
+  color: var(--wine);
+  font-weight: 700;
 }
 
 .transport-head h4::before{
@@ -1422,10 +1542,26 @@ section {
 
 .transport-method p {
   color: var(--ink);
-  margin-bottom: 10px;
-  padding-left: 28px;
-  font-size: 19px;
-  line-height: 1.95;
+  margin-bottom: 18px;
+  padding-left: 0;
+  font-size: 17px;
+  line-height: 1.9;
+}
+
+.transport-em{
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.transport-em::before{
+  content: '• ';
+  text-decoration: none;
+  color: var(--wine);
+  font-weight: 700;
+}
+
+.lodging-intro{
+  text-align: center;
 }
 
 .lodging-grid {
@@ -1454,10 +1590,10 @@ section {
 .lodging-item strong {
   display: block;
   font-family: 'Cormorant Garamond', serif;
-  font-weight: 500;
-  font-size: 20px;
+  font-weight: 600;
+  font-size: clamp(18px, 2vw, 26px);
   color: var(--ink);
-  margin-bottom: 6px;
+  margin-bottom: 14px;
 }
 
 .lodging-item span {
@@ -1512,10 +1648,14 @@ section {
 
 .activity-card h4 {
   font-family: 'Cormorant Garamond', serif;
-  font-weight: 500;
-  font-size: 26px;
+  font-weight: 600;
+  font-size: clamp(26px, 2.8vw, 38px);
   color: var(--wine);
   margin-bottom: 14px;
+}
+
+.region-intro{
+  text-align: center;
 }
 
 .activity-head h4{
@@ -1526,6 +1666,7 @@ section {
   font-size: 18px;
   color: var(--ink);
   line-height: 1.85;
+  margin-bottom: 18px;
 }
 
 .activity-card ul{
@@ -1596,8 +1737,8 @@ footer:not(.site-footer) {
 
 footer:not(.site-footer) .footer-heading{
   font-family: 'Cormorant Garamond', serif;
-  font-weight: 500;
-  font-size: 24px !important;
+  font-weight: 600;
+  font-size: clamp(22px, 2.6vw, 32px) !important;
   color: var(--ink) !important;
   margin-bottom: 16px;
 }
@@ -1730,7 +1871,8 @@ footer:not(.site-footer) p {
 .reveal {
   opacity: 0;
   transform: translateY(24px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
+  transition: opacity 0.95s ease, transform 0.95s ease;
+  transition-delay: var(--reveal-delay, 0ms);
 }
 
 .reveal.visible {
@@ -1785,7 +1927,7 @@ footer:not(.site-footer) p {
   .ceremony-illus img{
     width: 150px;
     display:block;
-    margin: 12px auto 0;
+    margin: 12px auto 16px;
   }
   .ceremony-illus--large img{ width: min(420px, 100%); }
 
@@ -1815,7 +1957,7 @@ footer:not(.site-footer) p {
   }
 
   .transport-method h4{
-    justify-content: center;
+    justify-content: flex-start;
   }
 
   .transport-method p{

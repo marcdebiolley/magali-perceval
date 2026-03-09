@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./design.css?v=20260223-3" />
+    <link rel="stylesheet" href="./design.css?v=20260309-20" />
   </head>
   <body>
     <script src="./access.js"></script>
@@ -19,10 +19,10 @@
         <a href="#top" class="nav-brand">Magali <span class="amp">&</span> Perceval</a>
         <ul class="nav-links">
           <li><a href="#festivites">Les festivités</a></li>
+          <li><a href="#rsvp">RSVP</a></li>
           <li><a href="#transport">Transport & logement</a></li>
           <li><a href="#region">Région</a></li>
           <li><a href="#contact">Contact</a></li>
-          <li><a href="#rsvp">RSVP</a></li>
         </ul>
       </div>
     </nav>
@@ -30,22 +30,22 @@
     <div class="pill" id="mobile-pill" data-audience="member">
       <a href="#festivites" class="pill-item active">
         <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-        <span class="pill-label">Fête</span>
-      </a>
-      <div class="pill-sep"></div>
-      <a href="#transport" class="pill-item">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 13l1-4a3 3 0 0 1 3-2h10a3 3 0 0 1 3 2l1 4"/><path d="M5 13h14"/><path d="M6 17h1"/><path d="M17 17h1"/><path d="M7 17a2 2 0 1 0-4 0a2 2 0 0 0 4 0z"/><path d="M21 17a2 2 0 1 0-4 0a2 2 0 0 0 4 0z"/></svg>
-        <span class="pill-label">Accès</span>
-      </a>
-      <div class="pill-sep"></div>
-      <a href="#region" class="pill-item">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 7 8 11.7z"/><circle cx="12" cy="10" r="3"/></svg>
-        <span class="pill-label">Région</span>
+        <span class="pill-label">Programme</span>
       </a>
       <div class="pill-sep"></div>
       <a href="#rsvp" class="pill-item">
         <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
         <span class="pill-label">RSVP</span>
+      </a>
+      <div class="pill-sep"></div>
+      <a href="#transport" class="pill-item">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 13l1-4a3 3 0 0 1 3-2h10a3 3 0 0 1 3 2l1 4"/><path d="M5 13h14"/><path d="M6 17h1"/><path d="M17 17h1"/><path d="M7 17a2 2 0 1 0-4 0a2 2 0 0 0 4 0z"/><path d="M21 17a2 2 0 1 0-4 0a2 2 0 0 0 4 0z"/></svg>
+        <span class="pill-label">Infos</span>
+      </a>
+      <div class="pill-sep"></div>
+      <a href="#region" class="pill-item">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 7 8 11.7z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span class="pill-label">Région</span>
       </a>
       <div class="pill-sep"></div>
       <a href="#contact" class="pill-item">
@@ -55,19 +55,21 @@
     </div>
 
     <section class="hero" id="top" data-after-gate>
-      <div class="hero-date">11 septembre 2026<br />Crillon-le-Brave</div>
+      <div class="hero-date">Vendredi 11 septembre 2026<br />Crillon-le-Brave</div>
       <h1 class="hero-names" data-audience="locked">
         Magali
         <span class="ampersand">&</span>
         Perceval
       </h1>
 
-      <a class="gate-card-link" href="./images/carte%20mariage.png" data-gate-card-open data-audience="member">
-        <img class="gate-card" src="./images/carte%20mariage.png" alt="" loading="eager" />
-      </a>
+      <p class="hero-intro" data-audience="member">On est vraiment heureux de vous avoir à nos côtés pour ce moment si particulier, dans un endroit qui nous est cher et qu’on a envie de pouvoir vous faire découvrir. Vous trouverez sur ce site toutes les infos pratiques et quelques idées pour profiter au maximum de votre séjour dans les environs.</p>
+
+      <div class="hero-decor" aria-hidden="true" data-audience="member">
+        <img class="hero-decor-img hero-decor-img--tomato" src="./images/tomate%201.png" alt="" loading="lazy" />
+        <img class="hero-decor-img hero-decor-img--garlic" src="./images/ails%201.png" alt="" loading="lazy" />
+      </div>
 
       <div class="hero-access" data-audience="locked" data-gate>
-        <p class="hero-location">Provence, France</p>
         <div class="gate-wrap">
           <form class="gate-form" data-gate-form>
             <div class="gate-row">
@@ -82,7 +84,6 @@
         </div>
       </div>
 
-      <p class="hero-location" data-audience="member">Provence, France</p>
       <div class="hero-scroll" data-audience="member"><span></span></div>
     </section>
 
@@ -95,67 +96,72 @@
         <p class="section-intro">Toutes les informations pour le jeudi, vendredi et samedi.</p>
       </div>
 
+      <div class="festivites-illus reveal" aria-hidden="true">
+        <img src="./images/image%20crillion%20.png" alt="" loading="lazy" />
+      </div>
+
+      <div class="section-decor section-decor--tr" aria-hidden="true" data-audience="member">
+        <img class="section-decor-img section-decor-img--tomato" src="./images/tomate%201.png" alt="" loading="lazy" />
+        <img class="section-decor-img section-decor-img--garlic" src="./images/ails%201.png" alt="" loading="lazy" />
+      </div>
+
       <div class="event-card reveal" data-audience="young">
         <div class="card-header">
-          <span class="card-day">Jeudi — Accueil</span>
+          <span class="card-day">Jeudi - Accueil</span>
           <span class="card-badge">10 septembre 2026</span>
         </div>
         <div class="card-body">
-          <p>Nous accueillons ceux qui seront déjà dans la région pour le mariage à partir de 16h dans la maison des parents de Perceval, à Crillon-le-Brave, pour une aprem relax au bord de la piscine, pizza et cocktail.</p>
-          <p><strong>Mot d'ordre :</strong> faites au mieux pour vous.</p>
+          <p>Pour celles et ceux qui seront déjà dans la région la veille du mariage (jeudi 10 septembre 2026), nous serions ravis de vous accueillir à partir de 16h chez les parents de Perceval dans le village de Crillon-le-Brave. L’occasion de se retrouver pour une après-midi au bord de la piscine agrémentée d’un petit pastis, de quelques parties de pétanque et de pizzas.</p>
+          <p>On est bien conscients que certains préfèreront profiter encore quelques jours de la pluie belge avant de descendre dans le sud et que tout le monde ne pourra pas être présent dès le jeudi. Aucun problème et pas de pression, venez si vous pouvez !</p>
           <div class="ceremony-illus ceremony-illus--large ceremony-illus--center" aria-hidden="true">
-            <img src="./images/jeudi%20welcome.png" alt="" loading="lazy" />
+            <img src="./images/p%C3%A9tanque%20.png" alt="" loading="lazy" />
           </div>
           <div class="info-grid">
+            <span class="info-label">Heure</span>
+            <span class="info-value">À partir de 16h</span>
             <span class="info-label">Adresse</span>
-            <span class="info-value"><a href="https://www.google.com/maps/search/?api=1&query=219%2C%20Chemin%20de%20la%20Croix%20du%20Coq%2C%2084410%20Crillon-le-Brave" target="_blank" rel="noopener noreferrer">219, Chemin de la Croix du Coq, 84410 Crillon-le-Brave</a></span>
-            <span class="info-label">Horaire</span>
-            <span class="info-value">16h – 22h</span>
-            <span class="info-label">Dress code</span>
-            <span class="info-value">Pas de dress code. Maillots + tenue d'été. Birkenstock et sandales encouragées.</span>
+            <span class="info-value"><a href="https://www.google.com/maps/search/?api=1&query=219%2C%20Chemin%20de%20la%20Croix%20du%20Coq%2C%2084410%20Crillon-le-Brave" target="_blank" rel="noopener noreferrer">219, Chemin de la Croix du Coq, 84410 Crillon le Brave</a></span>
+            <span class="info-label">Dress-code</span>
+            <span class="info-value">Ambiance relax : tenue d’été, sandales et maillot de bain</span>
           </div>
         </div>
       </div>
 
       <div class="event-card reveal">
         <div class="card-header">
-          <span class="card-day">Vendredi — Jour J</span>
+          <span class="card-day">Vendredi - Jour J</span>
           <span class="card-badge">11 septembre 2026</span>
         </div>
         <div class="card-body">
           <div class="ceremony-head">
-            <div class="card-subtitle">Partie 1 — Église</div>
+            <div class="card-subtitle">Partie 1 - Église</div>
             <div class="ceremony-illus" aria-hidden="true">
               <img src="./images/eglise%20m%26p.png" alt="" loading="lazy" />
             </div>
           </div>
+          <p>La cérémonie se déroulera à l’église Saint-Romain, tout en haut du village de Crillon. Il est possible de se garer sur le parking de la place de la mairie, dans la rue du Capitaine Crillon qui monte vers le centre du village (côté droit) ainsi que sur un petit parking situé en contrebas de l’église. Selon l’endroit de vote logement, vous pouvez aussi nous rejoindre à pied.</p>
           <div class="info-grid">
             <span class="info-label">Heure</span>
-            <span class="info-value">14h30</span>
+            <span class="info-value">15h00</span>
             <span class="info-label">Adresse</span>
-            <span class="info-value"><a href="https://www.google.com/maps/search/?api=1&query=18%2C%20Rue%20Escalado%2C%2084410%20Crillon-le-Brave" target="_blank" rel="noopener noreferrer">18, Rue Escalado, 84410 Crillon-le-Brave</a></span>
-            <span class="info-label">Parking</span>
-            <span class="info-value">Parking de l'église ou "Rue du Capitaine Crillon"</span>
+            <span class="info-value"><a href="https://www.google.com/maps/search/?api=1&query=Eglise%20Saint-Romain%2C%2084410%20Crillon-le-Brave%2C%20France" target="_blank" rel="noopener noreferrer">Eglise Saint-Romain, 84410, Crillon-le-Brave, France</a></span>
+            <span class="info-label">Dress-code</span>
+            <span class="info-value">Tenue de ville</span>
           </div>
 
           <div class="ceremony-head">
-            <div class="card-subtitle">Partie 2 — Domaine des Pins</div>
+            <div class="card-subtitle">Partie 2 - Réception</div>
             <div class="ceremony-illus" aria-hidden="true">
               <img src="./images/domaine%20de%20pins%20.png" alt="" loading="lazy" />
             </div>
           </div>
+          <p>La réception, le diner et la soirée se tiendront au Domaine des Pins, en bas du village. Un parking est prévu et sera indiqué à votre arrivée. Il est également possible de marcher de l’église jusqu’au lieu de la réception (20 minutes par un magnifique chemin un peu caillouteux au milieu des vignes ou 25 minutes par la route).</p>
           <div class="info-grid">
-            <span class="info-label">Réception</span>
-            <span class="info-value">16h30</span>
-            <span class="info-label">Dîner</span>
-            <span class="info-value">19h</span>
-            <span class="info-label">Soirée</span>
-            <span class="info-value">22h – 3h</span>
+            <span class="info-label">Heure</span>
+            <span class="info-value">17h00</span>
             <span class="info-label">Adresse</span>
-            <span class="info-value"><a href="https://www.google.com/maps/search/?api=1&query=1100%20Chem.%20Mormoiron%20par%20les%20Mourands%2C%2084410%20Crillon-le-Brave%2C%20France" target="_blank" rel="noopener noreferrer">Domaine des Pins — 1100 Chem. Mormoiron par les Mourands, 84410 Crillon-le-Brave, France</a></span>
-            <span class="info-label">Déplacement</span>
-            <span class="info-value">Parking à côté du domaine (indiqué à l'arrivée). Marche possible depuis l'église (20–25 min).</span>
-            <span class="info-label">Dress code</span>
+            <span class="info-value"><a href="https://www.google.com/maps/place/Domaine+des+pins/@44.109707,5.15376,786m/data=!3m2!1e3!4b1!4m6!3m5!1s0x12ca714e4a78c595:0x54aee3594983e399!8m2!3d44.109707!4d5.15376!16s%2Fg%2F11t54vk_z9?entry=tts&g_ep=EgoyMDI2MDIyNS4wIPu8ASoASAFQAw%3D%3D&skid=db055c05-cb89-4765-9daf-d373ce53d5e9" target="_blank" rel="noopener noreferrer">Domaine des Pins, 1100 Chemin des Mourands, 84410, Crillon-le-Brave, France</a></span>
+            <span class="info-label">Dress-code</span>
             <span class="info-value">Tenue de ville</span>
           </div>
         </div>
@@ -163,7 +169,7 @@
 
       <div class="event-card reveal" data-audience="young">
         <div class="card-header">
-          <span class="card-day">Samedi — Brunch festif</span>
+          <span class="card-day">Samedi - Brunch festif</span>
           <span class="card-badge">12 septembre 2026</span>
         </div>
         <div class="card-body">
@@ -173,152 +179,15 @@
               <img src="./images/brunch.png" alt="" loading="lazy" />
             </div>
           </div>
+          <p>Parce qu’on aura envie de continuer les réjouissances, on remet le couvert au même endroit le lendemain pour un brunch et une après-midi festive. Au programme : soleil, piscine, DJ sets et bons amis</p>
           <div class="info-grid">
-            <span class="info-label">Horaire</span>
-            <span class="info-value">13h – 22h</span>
+            <span class="info-label">Heure</span>
+            <span class="info-value">À partir de 12h30</span>
             <span class="info-label">Adresse</span>
-            <span class="info-value"><a href="https://www.google.com/maps/search/?api=1&query=1100%20Chem.%20Mormoiron%20par%20les%20Mourands%2C%2084410%20Crillon-le-Brave%2C%20France" target="_blank" rel="noopener noreferrer">Domaine des Pins — 1100 Chem. Mormoiron par les Mourands, 84410 Crillon-le-Brave, France</a></span>
-            <span class="info-label">Dress code</span>
-            <span class="info-value">À compléter</span>
+            <span class="info-value"><a href="https://www.google.com/maps/place/Domaine+des+pins/@44.109707,5.15376,786m/data=!3m2!1e3!4b1!4m6!3m5!1s0x12ca714e4a78c595:0x54aee3594983e399!8m2!3d44.109707!4d5.15376!16s%2Fg%2F11t54vk_z9?entry=tts&g_ep=EgoyMDI2MDIyNS4wIPu8ASoASAFQAw%3D%3D&skid=db055c05-cb89-4765-9daf-d373ce53d5e9" target="_blank" rel="noopener noreferrer">Domaine des Pins, 1100 Chemin des Mourands, 84410, Crillon-le-Brave, France</a></span>
+            <span class="info-label">Dress-code</span>
+            <span class="info-value">Venez comme vous voulez (tenue d’été et maillot de bain recommandés)</span>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <div class="divider" data-audience="member"><div class="divider-line"></div></div>
-
-    <section id="transport" data-audience="member">
-      <div class="reveal">
-        <div class="section-label">Pratique</div>
-        <h2 class="section-title">Transport & logement</h2>
-        <p class="section-intro">Comment venir, se déplacer, et où dormir autour de Crillon-le-Brave.</p>
-      </div>
-
-      <div class="transport-block reveal">
-        <h3>Venir à Crillon-le-Brave</h3>
-
-        <div class="transport-method">
-          <div class="transport-head">
-            <h4>En train</h4>
-            <div class="transport-illus" aria-hidden="true">
-              <img src="./images/tgv.png" alt="" loading="lazy" />
-            </div>
-          </div>
-          <p>Gare la plus proche : Avignon (≈ 35 minutes en voiture du village).</p>
-          <p>Depuis Bruxelles-Midi : 3 trains directs (matin, vers 13h, fin de journée) ≈ 5h. Il existe aussi de nombreux trains avec une escale à Paris, souvent moins chers.</p>
-          <p>Attention : certains billets ne sont disponibles qu'à partir de X mois avant le trajet. Mets une alerte et réserve dès que possible.</p>
-          <p>Petit conseil : carte réduction à 49€.</p>
-        </div>
-
-        <div class="transport-method">
-          <div class="transport-head">
-            <h4>En voiture</h4>
-            <div class="transport-illus" aria-hidden="true">
-              <img src="./images/voiture.png" alt="" loading="lazy" />
-            </div>
-          </div>
-          <p>Trajet classique vers le Sud ≈ 9h. Escale conseillée à Beaune si en deux jours. Covoiturage encouragé.</p>
-        </div>
-      </div>
-
-      <div class="transport-block reveal">
-        <h3>Se déplacer</h3>
-
-        <div class="transport-method">
-          <h4>Taxi</h4>
-          <p>Contacts taxi : à ajouter. On les repartagera avant le mariage pour éviter que quiconque reprenne sa voiture sous alcool.</p>
-        </div>
-
-        <div class="transport-method">
-          <h4>Voiture de location</h4>
-          <p>Louer une voiture depuis la gare d'Avignon peut être pratique.</p>
-        </div>
-
-        <div class="transport-method">
-          <h4>Vélo / à pied</h4>
-          <p>Super option pour profiter de l'ambiance locale.</p>
-        </div>
-      </div>
-
-      <div class="transport-block reveal">
-        <h3>Où dormir ?</h3>
-        <div class="lodging-grid">
-          <div class="lodging-item"><strong>Crillon-le-Brave</strong><span>Le village où se situe le Domaine des Pins où la journée du vendredi se déroule. Idéal pour dormir sur place ou à quelques minutes à pied/voiture du lieu de mariage ou de l’église. Certains lieux à Crillon sont à distance marchable de tous les lieux où nous vous accueillons.</span></div>
-          <div class="lodging-item"><strong>Bedoin</strong><span>Bedoin se situe à 10 minutes en voiture de Crillon-le-Brave. Ville de départ du Mont Ventoux. Le village est beaucoup plus grand que Crillon donc il y a sûrement plus de logements disponibles (et accessibles financièrement).</span></div>
-          <div class="lodging-item"><strong>Caromb et Saint-Pierre-de-Vassols</strong><span>Caromb et Saint-Pierre-de-Vassols se situent tous les deux à 12 minutes en voiture de Crillon-le-Brave. Même constat que Bédoin en termes de disponibilité de logements.</span></div>
-          <div class="lodging-item"><strong>Modène</strong><span>Modène se situe à 20 minutes en voiture de Crillon-le-Brave.</span></div>
-        </div>
-      </div>
-
-      <div class="tip-box reveal">
-        <p>Si vous avez des questions ou besoin d'aide pour les transports, <a href="#contact">contactez-nous</a>.</p>
-      </div>
-    </section>
-
-    <div class="divider" data-audience="member"><div class="divider-line"></div></div>
-
-    <section id="region" data-audience="member">
-      <div class="reveal">
-        <div class="section-label">Explorer</div>
-        <h2 class="section-title">À faire dans la région</h2>
-        <p class="section-intro">Quelques idées pour profiter du Ventoux et des environs.</p>
-      </div>
-
-      <div class="activity-grid reveal">
-        <div class="activity-card">
-          <div class="activity-head">
-            <h4>Mont Ventoux</h4>
-            <div class="activity-illus" aria-hidden="true">
-              <img src="./images/mont%20ventoux%20bb.png" alt="" loading="lazy" />
-            </div>
-          </div>
-          <p>Le coup de cœur de la région : le Mont Ventoux. Vous pouvez le grimper à pieds (via la montagne — voir carte pour les différents itinéraires), ou en profiter pour le monter à vélo. Bédoin est le village phare et le plus proche des départs à vélo.</p>
-          <ul>
-            <li><strong>Adresse de location de vélo conseillée :</strong> à venir. (Réservez votre vélo en avance, vous verrez que vous ne serez pas seuls.)</li>
-            <li><strong>Café/restaurant/bar pour bien terminer l’ascension :</strong> à venir. Sinon le village est rempli de petits cafés locaux.</li>
-            <li><strong>Le Belvédère (restaurant) :</strong> 270 Route de Bédoin, Lieu-dit, Chem. de Malaucène, 84410 Crillon-le-Brave</li>
-          </ul>
-        </div>
-        <div class="activity-card">
-          <div class="activity-head">
-            <h4>Balades &amp; villages</h4>
-            <div class="activity-illus" aria-hidden="true">
-              <img src="./images/velo.png" alt="" loading="lazy" />
-            </div>
-          </div>
-          <p>Balades autour du village (voir carte). Crillon-Le-Brave est entouré de magnifiques petits villages, certains proches et d’autres un peu plus éloignés.</p>
-          <ul>
-            <li><strong>Villages connus :</strong> Gordes</li>
-            <li><strong>Nos conseils :</strong> Suzette, Le Baroux</li>
-          </ul>
-        </div>
-        <div class="activity-card">
-          <div class="activity-head">
-            <h4>Dégustation de vin</h4>
-            <div class="activity-illus" aria-hidden="true">
-              <img src="./images/vignes.png" alt="" loading="lazy" />
-            </div>
-          </div>
-          <p>La région du Ventoux abrite de nombreux vignobles. Il vaut toujours mieux appeler pour réserver.</p>
-          <ul>
-            <li><strong>La Ferme Saint Pierre</strong></li>
-            <li><strong>Valcombe</strong></li>
-          </ul>
-        </div>
-        <div class="activity-card">
-          <div class="activity-head">
-            <h4>Manger / marchés</h4>
-            <div class="activity-illus" aria-hidden="true">
-              <img src="./images/panier%20legumes.png" alt="" loading="lazy" />
-            </div>
-          </div>
-          <p>Attention : veillez à réserver les restaurants un peu à l’avance.</p>
-          <ul>
-            <li><strong>Restaurants :</strong> <a href="http://www.lesaintromain.fr/" target="_blank" rel="noopener">Le Saint Romain</a> (Crillon-le-Brave — brasserie simple et plus abordable, dans le centre du village), <a href="http://www.clovisetbasina.com/" target="_blank" rel="noopener">Clovis et Basina</a> (Crillon-Le-Brave — vue incroyable et menu délicieux), <a href="http://pascal-poulain.com/" target="_blank" rel="noopener">Le Six à table</a> (Caromb), <a href="https://lacarte.menu/restaurants/bedoin/lily-et-paul" target="_blank" rel="noopener">Lily et Paul</a> (Bédoin)</li>
-            <li><strong>Boire un verre :</strong> <a href="https://www.crillonlebrave.com/" target="_blank" rel="noopener">Hôtel Crillon le Brave</a> (prix à la hauteur, mais très bel hôtel de charme — possibilité de manger ou simplement boire un verre, avec spa)</li>
-            <li><strong>Marchés (nos préférés) :</strong> Bédoin (lundi matin), Pernes (village des artistes — samedi matin), Isle-sur-la-Sorgue (dimanche matin)</li>
-            <li><strong>Courses :</strong> magasins de fruits et légumes à Carpentras, boulangerie Le Fournil de Crillon, U-Express Saint-Pierre-de Vassols</li>
-          </ul>
         </div>
       </div>
     </section>
@@ -327,9 +196,13 @@
 
     <section id="rsvp" data-audience="member">
       <div class="reveal">
-        <div class="section-label">Confirmer</div>
+        <div class="section-label"></div>
         <h2 class="section-title">RSVP</h2>
         <p class="section-intro">Merci de confirmer votre présence avant le 1er juin 2026.</p>
+      </div>
+
+      <div class="section-decor section-decor--br" aria-hidden="true" data-audience="member">
+        <img class="section-decor-img section-decor-img--garlic" src="./images/AILS%203.png" alt="" loading="lazy" />
       </div>
 
       <div class="rsvp-card reveal">
@@ -351,20 +224,25 @@
           </div>
 
           <div class="form-group">
+            <label for="adresse-postale">Adresse postale</label>
+            <textarea id="adresse-postale" name="adresse_postale" rows="2" placeholder="Votre adresse"></textarea>
+          </div>
+
+          <div class="form-group">
             <label class="label-block">Serez-vous présent(e) ?</label>
             <div class="radio-group">
               <label class="radio-card">
                 <input type="radio" name="presence" value="oui" required />
                 <span class="radio-label">
                   <span class="radio-icon">✓</span>
-                  Avec joie
+                  oui évidemment !!!
                 </span>
               </label>
               <label class="radio-card">
                 <input type="radio" name="presence" value="non" />
                 <span class="radio-label">
                   <span class="radio-icon">✕</span>
-                  Malheureusement non
+                  non malheureusement…
                 </span>
               </label>
             </div>
@@ -397,11 +275,6 @@
             </div>
           </div>
 
-          <div class="form-group" id="allergies-group" style="display:none;">
-            <label for="allergies">Allergies ou régime alimentaire</label>
-            <input type="text" id="allergies" name="allergies" placeholder="Végétarien, sans gluten, etc." />
-          </div>
-
           <div class="form-group">
             <label for="message">Un petit mot ? <span class="label-optional">(optionnel)</span></label>
             <textarea id="message" name="message" rows="3" placeholder="On a hâte de vous lire..."></textarea>
@@ -423,12 +296,203 @@
       </div>
     </section>
 
+    <div class="divider" data-audience="member"><div class="divider-line"></div></div>
+
+    <section id="carte" data-audience="member">
+      <div class="reveal">
+        <div class="section-label">Se repérer</div>
+        <h2 class="section-title">La carte</h2>
+        <p class="section-intro">Pour retrouver tous les lieux importants en un clin d'œil.</p>
+      </div>
+
+      <a class="gate-card-link" href="./images/carte%20mariage.png" data-gate-card-open data-audience="member">
+        <img class="gate-card" src="./images/carte%20mariage.png" alt="" loading="lazy" />
+      </a>
+    </section>
+
+    <div class="divider" data-audience="member"><div class="divider-line"></div></div>
+
+    <section id="transport" data-audience="member">
+      <div class="reveal">
+        <div class="section-label">Informations pratique</div>
+        <h2 class="section-title">Transport & Logement</h2>
+        <p class="section-intro">Comment venir, se déplacer, et où dormir autour de Crillon-le-Brave.</p>
+      </div>
+
+      <div class="section-decor section-decor--bl" aria-hidden="true" data-audience="member">
+        <img class="section-decor-img section-decor-img--garlic" src="./images/AILS%202.png" alt="" loading="lazy" />
+      </div>
+
+      <p class="section-intro transport-lead">Nous sommes bien conscients que la Provence n’est pas la porte à côté et qu’il peut être compliqué de rejoindre cette région qui nous est chère. Dans la mesure du possible, nous vous encourageons cependant à favoriser ces deux moyens de transports plutôt que l’avion, qui est de toute façon moins pratique compte tenu de la proximité de la gare TGV.</p>
+
+      <div class="transport-block reveal">
+        <h3>Se rendre à Crillon-le-Brave</h3>
+
+        <div class="transport-method">
+          <div class="transport-head">
+            <h4>En train (le plus court et le plus pratique)</h4>
+            <div class="transport-illus" aria-hidden="true">
+              <img src="./images/tgv.png" alt="" loading="lazy" />
+            </div>
+          </div>
+          <p>La gare la plus proche de Crillon est Avignon TGV (à environ 35 minutes de voiture).</p>
+          <p>En général il y a 2 trains directs par jour (le matin et en début d’après-midi) depuis Bruxelles-Midi vers Avignon TGV, et le trajet dure un peu moins de 5h. Il existe également de nombreux trains avec une escale à Paris, d’une durée similaire et souvent moins chers.</p>
+          <p><span class="transport-em">attention:</span> le prix des billets augmente rapidement, et il est donc recommandé de ne pas trop tarder une fois qu’ils sont mis en vente (en général 4 mois à l’avance). Nous vous tiendrons au courant des dates de sortie des billets (probablement début mai), mais n’hésitez pas à déjà mettre un rappel dans votre calendrier.</p>
+          <p><span class="transport-em">Petit conseil :</span> la SNCF propose une carte Avantage (49 €, valable 1 an) qui permet à son titulaire et à un accompagnant de bénéficier d’une réduction de 30% sur le prix des billets de train TGV INOUI (hors OUIGO et Eurostar), sur tous les trajets aller-retour avec une nuit du vendredi, du samedi et/ou dimanche et tous les trajets simples le samedi et le dimanche. D’expérience, cette carte Avantage est plus que rentabilisée en un seul aller-retour Bruxelles-Avignon (surtout lorsqu’elle est utilisée pour 2 personnes).</p>
+          <p><span class="transport-em">Location de voiture :</span> il y a plusieurs agences de location de voitures à la gare d’Avignon TGV (Avis, Hertz, Budget, Sixt, Europcar, Alamo).</p>
+        </div>
+
+        <div class="transport-method">
+          <div class="transport-head">
+            <h4>En voiture (covoiturage recommandé)</h4>
+            <div class="transport-illus" aria-hidden="true">
+              <img src="./images/voiture.png" alt="" loading="lazy" />
+            </div>
+          </div>
+          <p>Le trajet en voiture dure environ 9-10h. Une option pour le rendre plus agréable est de faire une escale et de dormir aux alentours de Dijon ou Beaune.</p>
+        </div>
+      </div>
+
+      <div class="transport-block reveal">
+        <h3>Se déplacer</h3>
+
+        <div class="transport-method">
+          <h4>Taxi</h4>
+          <p>Taxis (sur place) Nous vous transmettrons des numéros de taxis de la région plus proche de la date du mariage.</p>
+        </div>
+
+        <div class="transport-method">
+          <h4>Voiture de location</h4>
+          <p>Louer une voiture depuis la gare d'Avignon peut être pratique.</p>
+        </div>
+
+        <div class="transport-method">
+          <h4>Vélo / à pied</h4>
+          <p>Super option pour profiter de l'ambiance locale.</p>
+        </div>
+      </div>
+
+      <div class="transport-block reveal">
+        <h3>Où dormir ?</h3>
+        <p class="lodging-intro">Il y a de nombreux villages à proximité du lieu de mariage qui proposent différents types d’hébergement (hôtels, maisons d’hôtes, locations de vacances et campings).</p>
+        <p class="lodging-intro">Ne tardez pas trop car l’offre dans les villages les plus proches est assez limitée e les hébergements risquent d’être assez vite réservés.</p>
+        <p class="lodging-intro">Pour les plus libérés, ne manquez surtout pas le domaine de Bélèzy à Bédoin, l’un des plus grands campings naturistes d’Europe et idéalement situé au pied du Mont Ventoux !</p>
+        <div class="lodging-grid">
+          <div class="lodging-item"><strong>Crillon-le-Brave</strong><span>Il s’agit du charmant petit village dans lequel se déroulera l’intégralité du mariage. Idéal pour dormir à quelques minutes de l’église ou du lieu des festivités.</span></div>
+          <div class="lodging-item"><strong>Bédoin (5-10 minutes en voiture)</strong><span>Village de départ pour l’ascension du Mont Ventoux. Il est beaucoup plus grand que celui de Crillon et il y aura sûrement plus de logements disponibles (et accessibles financièrement).</span></div>
+          <div class="lodging-item"><strong>Caromb (10 minutes en voiture)</strong><span>Comme Bédoin, il s’agit d’un village plus grand, avec probablement plus d’options différentes pour dormir.</span></div>
+          <div class="lodging-item"><strong>Saint-Pierre-de-Vassols et Modène (5-10 minutes en voiture)</strong><span>Deux très petits villages très proches du lieu du mariage. Offre d’hébergement probablement limitée.</span></div>
+        </div>
+      </div>
+
+      <div class="tip-box reveal">
+        <p>Si vous avez des questions ou besoin d'aide pour les transports ou hébergements, <a href="#contact">contactez-nous</a>.</p>
+      </div>
+    </section>
+
+    <div class="divider" data-audience="member"><div class="divider-line"></div></div>
+
+    <section id="region" data-audience="member">
+      <div class="reveal">
+        <div class="section-label">RÉGION</div>
+        <h2 class="section-title">Que faire dans les environs</h2>
+        <p class="section-intro">Quelques idées pour profiter du Ventoux et des environs.</p>
+      </div>
+
+      <div class="section-decor section-decor--tl" aria-hidden="true" data-audience="member">
+        <img class="section-decor-img section-decor-img--tomato" src="./images/tomate%201.png" alt="" loading="lazy" />
+      </div>
+
+      <div class="activity-grid reveal">
+        <p class="region-intro">Pour les chanceux qui ont la possibilité de passer quelques jours dans ce beau département du Vaucluse, de nombreuses activités sympas peuvent être envisagées à proximité de Crillon.</p>
+        <div class="activity-card">
+          <div class="activity-head">
+            <h4>L’incontournable de la région : le Mont Ventoux.</h4>
+            <div class="activity-illus" aria-hidden="true">
+              <img src="./images/mont%20ventoux%20bb.png" alt="" loading="lazy" />
+            </div>
+          </div>
+          <p>Pour ceux qui voudraient s’attaquer à l’ascension mythique du Géant de Provence à vélo, l’itinéraire le plus réputé se fait depuis le village de Bédoin (situé à moins de 5 km du Domaine des Pins) : 22 km pour 1 600 m de dénivelé positif avec un pente moyenne à 7,5%. L’ascension dure généralement 2-3h et il vaut mieux commencer tôt dans la matinée.</p>
+          <p>Il est possible de louer des vélos de course et des vélos électriques à plusieurs endroits dans Bédoin. Nous vous conseillons celui-ci : <a href="https://www.google.com/maps/place/R%C3%8AVE+DE+V%C3%89LO+Ventoux/@44.1252311,5.1805027,20.17z/data=!4m7!3m6!1s0x12ca7086c494c39d:0x57988e4d5ce11e53!8m2!3d44.1255609!4d5.1813154!15sChZCw6lkb2luIGxvY2F0aW9uIHbDqWxvWhgiFmLDqWRvaW4gbG9jYXRpb24gdsOpbG-SAQ1iaWN5Y2xlX3N0b3JlmgFEQ2k5RFFVbFJRVU52WkVOb2RIbGpSamx2VDJ0NE5HTXhjSEZQU0Zad1ZHNVZORk5ZVGxKYU0wSXpaSHBDUzJNell4QULgAQD6AQQIABA-!16s%2Fg%2F1tg4hl4g?entry=tts&g_ep=EgoyMDI2MDMwMi4wIPu8ASoASAFQAw%3D%3D&skid=fab58c34-a24b-41a1-aca9-17f74c83d87b" target="_blank" rel="noopener noreferrer">Rêve de Vélo – Ventoux</a> (mieux vaut réserver à l’avance). Il est en principe possible de venir chercher son vélo la veille pour pouvoir commencer directement depuis chez soi le matin.</p>
+          <p>Il existe également de nombreux itinéraires de randonnées pour arriver au sommet. Au départ de Bédoin, l’ascension est assez exigeante et vous prendra environ 4h de marche (approx. 10 km / 1450m de D+), sans compter la descente. Pour les plus aventuriers, l’idéal est de le faire de nuit pour éviter les fortes chaleurs et arriver au sommet pour le lever du soleil (attention à bien se couvrir, il fait très froid au sommet surtout tôt le matin).</p>
+          <p>Plusieurs itinéraires plus ou moins longs sont proposés sur ce lien (y compris depuis Bédoin) : <a href="https://www.ventouxprovence.fr/reportages/activites-rando/5-randos-pour-rejoindre-le-sommet-du-ventoux.html" target="_blank" rel="noopener noreferrer">ventouxprovence.fr</a>.</p>
+          <p>Pour une randonnée plus light, moins longue, mais tout aussi magnifique, nous vous conseillons également les dentelles de Montmirail à environ 30 minutes de Crillon.</p>
+        </div>
+        <div class="activity-card">
+          <div class="activity-head">
+            <h4>Villages à visiter</h4>
+            <div class="activity-illus" aria-hidden="true">
+              <img src="./images/velo.png" alt="" loading="lazy" />
+            </div>
+          </div>
+          <p>En plus de Crillon, de nombreux villages valent le détour dans la région, dont les suivants qui se trouvent tous à moins d’une heure de route.</p>
+          <ul>
+            <li>Le Barroux, charmant village dominé par un château médiéval avec une vue imprenable sur le Ventoux et les dentelles de Montmirail (15 min)</li>
+            <li>Pernes-les fontaines, village avec de nombreux ateliers d’artiste, célèbre pour ses fontaines et remparts (25 min)</li>
+            <li>Vénasque, l'un des plus vieux villages du Vaucluse, niché sur un piton rocheux (25 min)</li>
+            <li>Vaison-la-Romaine, ville médiévale et site archéologique romain (35 min)</li>
+            <li>Séguret, village médiéval perché au-dessus des vignes (35 minutes)</li>
+            <li>L'Isle-sur-la-Sorgue, connue pour ses antiquaires et sa rivière qui traverse la ville (40 min)</li>
+            <li>Gordes, l'un des plus beaux villages de France, perché sur la falaise avec ses ruelles en pierre (40 min)</li>
+            <li>Roussillon, célèbre pour ses falaises d’ocre rouge (50 min)</li>
+          </ul>
+        </div>
+        <div class="activity-card">
+          <div class="activity-head">
+            <h4>Marchés provençaux</h4>
+            <div class="activity-illus" aria-hidden="true">
+              <img src="./images/panier%20legumes.png" alt="" loading="lazy" />
+            </div>
+          </div>
+          <p>Il y a de nombreux marchés provençaux dans le coin, parfaits pour flâner et faire le plein de bons produits du terroir :</p>
+          <ul>
+            <li>Bédoin (lundi matin)</li>
+            <li>Vaison-la-Romaine (mardi matin)</li>
+            <li>Pernes-les-Fontaines (samedi matin)</li>
+            <li>L’Isle-sur-la-Sorgue (dimanche matin)</li>
+          </ul>
+        </div>
+
+        <div class="activity-card">
+          <div class="activity-head">
+            <h4>Restaurants</h4>
+            <div class="activity-illus" aria-hidden="true">
+              <img src="./images/panier%20legumes.png" alt="" loading="lazy" />
+            </div>
+          </div>
+          <p>Quelques bonnes adresses dans les environs :</p>
+          <ul>
+            <li><a href="https://www.google.com/maps/search/?api=1&query=Le%20Saint%20Romain%2C%20Crillon-le-Brave" target="_blank" rel="noopener noreferrer">Le Saint Romain</a> (Crillon-le-Brave), brasserie simple et abordable située dans le centre du village</li>
+            <li><a href="https://www.google.com/maps/search/?api=1&query=Clovis%20et%20Basina%2C%20Crillon-le-Brave" target="_blank" rel="noopener noreferrer">Clovis et Basina</a> (Crillon-le-Brave), pour une belle table avec une vue imprenable et un menu délicieux</li>
+            <li><a href="https://www.google.com/maps/search/?api=1&query=Le%20Belv%C3%A9d%C3%A8re%2C%20Crillon-le-Brave" target="_blank" rel="noopener noreferrer">Le Belvédère</a> (Crillon-le-Brave), restaurant sympa en dehors du village avec une grande terrasse et vue panoramique sur le Ventoux</li>
+            <li><a href="https://www.google.com/maps/search/?api=1&query=Le%20Six%20%C3%A0%20Table%2C%20Caromb" target="_blank" rel="noopener noreferrer">Le Six à Table</a> (Caromb)</li>
+            <li><a href="https://www.google.com/maps/search/?api=1&query=Lily%20et%20Paul%2C%20B%C3%A9doin" target="_blank" rel="noopener noreferrer">Lily et Paul</a> (Bédoin)</li>
+          </ul>
+        </div>
+
+        <div class="activity-card">
+          <div class="activity-head">
+            <h4>Boire un verre / vins</h4>
+            <div class="activity-illus" aria-hidden="true">
+              <img src="./images/vignes.png" alt="" loading="lazy" />
+            </div>
+          </div>
+          <p>Pour boire un verre ou organiser une dégustation de vins, nous vous conseillons <a href="https://www.google.com/maps/search/?api=1&query=Domaine%20de%20la%20Ferme%20Saint-Martin%2C%20Suzette" target="_blank" rel="noopener noreferrer">le Domaine de la Ferme Saint-Martin à Suzette</a>. Ils ont d’excellents vins natures et une magnifique terrasse pour déguster une bonne bouteille perché sur une colline surplombant la vallée.</p>
+          <p>Pour les amateurs d’expériences plus haut de gamme, impossible de ne pas mentionner <a href="https://www.google.com/maps/search/?api=1&query=H%C3%B4tel%20Crillon%20Le%20Brave" target="_blank" rel="noopener noreferrer">l’Hôtel Crillon Le Brave</a>, l’établissement emblématique du village. Vous aurez peut-être la chance d’y croiser des célébrités vraiment très célèbres et autres influenceurs très influents en vacances dans la région. Possible de diner ou boire un verre dans un très beau cadre (ou simplement d’y passer une rapide tête en demandant gentiment à la réception). Les prix sont à la hauteur de la clientèle visée.</p>
+        </div>
+      </div>
+    </section>
+
     <!-- FOOTER -->
     <footer id="contact" data-audience="all">
       <div class="footer-ornament">
         <span></span>
         <div class="diamond"></div>
         <span></span>
+      </div>
+
+      <div class="section-decor section-decor--center" aria-hidden="true" data-audience="all">
+        <img class="section-decor-img section-decor-img--tomato" src="./images/tomate%201.png" alt="" loading="lazy" />
       </div>
       <p class="footer-heading">Contact</p>
       <div class="footer-contacts">
@@ -515,15 +579,19 @@
 
       // ═══ SCROLL REVEAL ═══
       const reveals = document.querySelectorAll('.reveal');
+      reveals.forEach((el, i) => {
+        el.style.setProperty('--reveal-delay', `${(i % 6) * 70}ms`);
+      });
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
               entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
             }
           });
         },
-        { threshold: 0.12 }
+        { threshold: 0.18, rootMargin: '0px 0px -15% 0px' }
       );
       reveals.forEach((el) => observer.observe(el));
 
@@ -562,7 +630,6 @@
       // ─── RSVP FORM LOGIC ───
       const presenceRadios = document.querySelectorAll('input[name="presence"]');
       const eventsGroup = document.getElementById('events-group');
-      const allergiesGroup = document.getElementById('allergies-group');
 
       function setGroupDisplay(el, shouldShow) {
         if (!el) return;
@@ -603,7 +670,6 @@
       presenceRadios.forEach((radio) => {
         radio.addEventListener('change', () => {
           const coming = radio.value === 'oui';
-          setGroupDisplay(allergiesGroup, coming);
 
           setGroupDisplay(eventsGroup, coming && USER_TYPE === 'jeune');
           enforceFridayLock(coming && USER_TYPE === 'jeune');
@@ -636,8 +702,8 @@
           if (samediEl) samedi = samediEl.checked ? 'Oui' : 'Non';
         }
 
-        var allergiesInput = document.getElementById('allergies');
-        var allergiesVal = allergiesInput ? allergiesInput.value || 'Aucune' : 'Aucune';
+        var addressInput = document.getElementById('adresse-postale');
+        var addressVal = addressInput ? addressInput.value : '';
 
         var messageInput = document.getElementById('message');
         var messageVal = messageInput ? messageInput.value : '';
@@ -646,13 +712,13 @@
           prenom: form.prenom.value,
           nom: form.nom.value,
           email: form.email.value,
+          adresse_postale: addressVal,
           presence: isComing ? 'Oui' : 'Non',
           nb_personnes: isComing ? '1' : '0',
           accompagnants: 'Aucun',
           jeudi: jeudi,
           vendredi: vendredi,
           samedi: samedi,
-          allergies: isComing ? allergiesVal : '',
           message: messageVal
         };
 
@@ -676,7 +742,6 @@
 
       const selectedPresence = document.querySelector('input[name="presence"]:checked');
       const coming = selectedPresence ? selectedPresence.value === 'oui' : false;
-      setGroupDisplay(allergiesGroup, coming);
 
       setGroupDisplay(eventsGroup, coming && USER_TYPE === 'jeune');
       enforceFridayLock(coming && USER_TYPE === 'jeune');
