@@ -1913,8 +1913,11 @@ footer:not(.site-footer) p {
   .info-label,
   .info-value{ text-align: center; }
   .card-subtitle{ text-align: center; }
+  #transport .transport-block > h3{ text-align: center; }
   .activity-grid { grid-template-columns: 1fr; }
   .lodging-grid { grid-template-columns: 1fr 1fr; }
+
+  #region .activity-grid.reveal{ opacity: 1; transform: none; }
 
   .hero { padding: 24px; }
 
@@ -1936,7 +1939,7 @@ footer:not(.site-footer) p {
 
   .event-card--jeudi .ceremony-illus--jeudi{
     float: none;
-    width: 150px;
+    width: 120px;
     margin: 12px auto 18px;
     display: flex;
     justify-content: center;
