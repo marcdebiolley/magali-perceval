@@ -515,7 +515,7 @@ body {
   font-size: 0.5em;
   color: var(--gold);
   margin: 6px 0 8px;
-  transform: translateX(2px);
+  transform: none;
 }
 
 .hero-intro{
@@ -1424,6 +1424,19 @@ footer#contact > *:not(.section-decor){
   margin: 18px 0 22px;
 }
 
+.event-card--jeudi .ceremony-illus--jeudi{
+  position: static;
+  float: right;
+  width: 150px;
+  margin: 6px 0 12px 18px;
+  display: block;
+}
+
+.event-card--jeudi .ceremony-illus--jeudi img{
+  width: 100%;
+  height: auto;
+}
+
 .card-subtitle:first-child { margin-top: 0; }
 
 .info-grid {
@@ -1920,6 +1933,14 @@ footer:not(.site-footer) p {
   .card-day,
   .card-badge{ text-align: center; }
   .card-body p{ text-align: center; }
+
+  .event-card--jeudi .ceremony-illus--jeudi{
+    float: none;
+    width: 150px;
+    margin: 12px auto 18px;
+    display: flex;
+    justify-content: center;
+  }
 
   .ceremony-head{ flex-direction: column; gap: 10px; padding-right: 0; }
   .ceremony-head .card-subtitle{ text-align: center; width: 100%; }
