@@ -249,6 +249,17 @@
             </div>
           </div>
 
+          <div class="form-group" id="guests-group" style="display:none;">
+            <label class="label-block" for="guests">Combien de personnes serez-vous ?</label>
+            <div class="guest-counter" style="display:flex;align-items:center;justify-content:center;gap:12px;">
+              <button type="button" class="btn-submit" style="padding:10px 14px;" onclick="updateGuests(-1)" aria-label="Retirer une personne">-</button>
+              <input type="number" id="guests" name="guests" value="1" min="1" max="10" style="width:74px;text-align:center;" />
+              <button type="button" class="btn-submit" style="padding:10px 14px;" onclick="updateGuests(1)" aria-label="Ajouter une personne">+</button>
+            </div>
+
+            <div id="guest-names" style="margin-top:14px;"></div>
+          </div>
+
           <div class="form-group" id="events-group" data-audience="young" style="display:none;">
             <label class="label-block">À quels moments serez-vous présent(e) ?</label>
             <div class="checkbox-group">
@@ -630,6 +641,7 @@
 
       // ─── RSVP FORM LOGIC ───
       const presenceRadios = document.querySelectorAll('input[name="presence"]');
+      const guestsGroup = document.getElementById('guests-group');
       const eventsGroup = document.getElementById('events-group');
 
       function setGroupDisplay(el, shouldShow) {
@@ -638,33 +650,50 @@
         const isHiddenByAudience = !!el.hidden;
         const finalShow = isHiddenByAudience ? false : shouldShow;
 
-        if (!isHiddenByAudience) {
-          el.style.display = finalShow ? 'block' : 'none';
-        }
-
-        el.querySelectorAll('input, select, textarea, button').forEach((node) => {
-          if (node.closest('.stepper')) return;
-          node.disabled = !finalShow;
-        });
+        el.style.display = finalShow ? 'block' : 'none';
       }
 
-      function enforceFridayLock(isComing) {
-        const vendrediCb = document.querySelector('input[name="events"][value="vendredi"]');
-        if (!vendrediCb) return;
+      function updateGuests(delta) {
+        const input = document.getElementById('guests');
+        if (!input) return;
+        let val = parseInt(input.value || '1', 10) + delta;
+        val = Math.max(1, Math.min(10, val));
+        input.value = String(val);
+        renderGuestNames(val);
+      }
 
-        if (!vendrediCb.dataset.locked) {
-          vendrediCb.addEventListener('change', () => {
-            if (!vendrediCb.checked) vendrediCb.checked = true;
-          });
-          vendrediCb.dataset.locked = '1';
-        }
+      function renderGuestNames(count) {
+        const container = document.getElementById('guest-names');
+        if (!container) return;
 
-        if (isComing) {
-          vendrediCb.checked = true;
-          vendrediCb.disabled = true;
-        } else {
-          vendrediCb.disabled = false;
-          vendrediCb.checked = false;
+        const existing = {};
+        container.querySelectorAll('.guest-name-row').forEach((row) => {
+          const idx = row.dataset.index;
+          const inputs = row.querySelectorAll('input');
+          existing[idx] = { prenom: inputs[0].value, nom: inputs[1].value };
+        });
+
+        container.innerHTML = '';
+
+        for (let i = 2; i <= count; i++) {
+          const row = document.createElement('div');
+          row.className = 'guest-name-row';
+          row.dataset.index = String(i);
+          row.style.display = 'grid';
+          row.style.gridTemplateColumns = '28px 1fr 1fr';
+          row.style.gap = '10px';
+          row.style.alignItems = 'center';
+          row.style.marginTop = '10px';
+
+          const prev = existing[i] || { prenom: '', nom: '' };
+
+          row.innerHTML = `
+            <span class="guest-number">${i}</span>
+            <input type="text" name="guest_prenom_${i}" placeholder="Prénom" value="${prev.prenom}" required />
+            <input type="text" name="guest_nom_${i}" placeholder="Nom" value="${prev.nom}" required />
+          `;
+
+          container.appendChild(row);
         }
       }
 
@@ -672,8 +701,12 @@
         radio.addEventListener('change', () => {
           const coming = radio.value === 'oui';
 
-          setGroupDisplay(eventsGroup, coming && USER_TYPE === 'jeune');
-          enforceFridayLock(coming && USER_TYPE === 'jeune');
+          setGroupDisplay(guestsGroup, coming);
+          setGroupDisplay(eventsGroup, coming);
+
+          if (coming) {
+            renderGuestNames(parseInt((document.getElementById('guests') || {}).value || '1', 10) || 1);
+          }
         });
       });
 
@@ -688,64 +721,107 @@
         btn.disabled = true;
 
         var form = document.getElementById('rsvp-form');
+        var prenom = form.prenom.value;
+        var nom = form.nom.value;
+        var email = form.email ? form.email.value : '';
+        var adressePostale = form.adresse_postale ? form.adresse_postale.value : '';
+
         var coming = form.querySelector('input[name="presence"]:checked');
         var isComing = coming && coming.value === 'oui';
+        var presenceLabel = isComing ? 'Oui, avec joie' : 'Non, malheureusement';
 
-        var jeudiEl = form.querySelector('input[name="events"][value="jeudi"]');
-        var samediEl = form.querySelector('input[name="events"][value="samedi"]');
+        var guestsInput = document.getElementById('guests');
+        var guests = guestsInput ? String(guestsInput.value || '1') : '1';
+
+        var guestList = '';
+        document.querySelectorAll('.guest-name-row').forEach(function (row) {
+          var inputs = row.querySelectorAll('input');
+          if (inputs[0].value && inputs[1].value) {
+            guestList += `• ${inputs[0].value} ${inputs[1].value}\n`;
+          }
+        });
+        if (!guestList) guestList = 'Aucun accompagnant';
 
         var jeudi = 'Non';
-        var vendredi = isComing ? 'Oui' : 'Non';
+        var vendredi = 'Non';
         var samedi = 'Non';
 
-        if (isComing) {
-          if (jeudiEl) jeudi = jeudiEl.checked ? 'Oui' : 'Non';
-          if (samediEl) samedi = samediEl.checked ? 'Oui' : 'Non';
+        if (isComing && eventsGroup && !eventsGroup.hidden) {
+          jeudi = form.querySelector('input[name="events"][value="jeudi"]') && form.querySelector('input[name="events"][value="jeudi"]').checked ? 'Oui' : 'Non';
+          vendredi = form.querySelector('input[name="events"][value="vendredi"]') && form.querySelector('input[name="events"][value="vendredi"]').checked ? 'Oui' : 'Non';
+          samedi = form.querySelector('input[name="events"][value="samedi"]') && form.querySelector('input[name="events"][value="samedi"]').checked ? 'Oui' : 'Non';
         }
 
-        var addressInput = document.getElementById('adresse-postale');
-        var addressVal = addressInput ? addressInput.value : '';
-
-        var messageInput = document.getElementById('message');
-        var messageVal = messageInput ? messageInput.value : '';
+        var messageVal = form.message ? (form.message.value || '') : '';
 
         var payload = {
-          prenom: form.prenom.value,
-          nom: form.nom.value,
-          email: form.email.value,
-          adresse_postale: addressVal,
-          presence: isComing ? 'Oui' : 'Non',
-          nb_personnes: isComing ? '1' : '0',
-          accompagnants: 'Aucun',
+          user_type: USER_TYPE,
+          prenom: prenom,
+          nom: nom,
+          email: email,
+          adresse: adressePostale,
+          presence: presenceLabel,
+          guests: guests,
+          guestList: guestList,
           jeudi: jeudi,
           vendredi: vendredi,
           samedi: samedi,
           message: messageVal
         };
 
-        fetch(SHEET_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        }).then(function() {
+        function showSuccess() {
           form.style.display = 'none';
           document.getElementById('rsvp-success').style.display = 'block';
-        }).catch(function() {
+        }
+
+        function showError() {
           btnText.textContent = 'Erreur, réessayer';
           btnText.style.display = 'inline';
           btnLoader.style.display = 'none';
           btn.disabled = false;
-        });
+        }
+
+        function postCors() {
+          return fetch(SHEET_URL, {
+            method: 'POST',
+            mode: 'cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          }).then(function (res) {
+            if (!res.ok) throw new Error('Bad response');
+            return res.json();
+          });
+        }
+
+        function postNoCors() {
+          return fetch(SHEET_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+        }
+
+        postCors()
+          .then(showSuccess)
+          .catch(function () {
+            return postNoCors()
+              .then(showSuccess)
+              .catch(showError);
+          });
       }
 
       window.handleRSVP = handleRSVP;
+      window.updateGuests = updateGuests;
 
       const selectedPresence = document.querySelector('input[name="presence"]:checked');
       const coming = selectedPresence ? selectedPresence.value === 'oui' : false;
 
-      setGroupDisplay(eventsGroup, coming && USER_TYPE === 'jeune');
-      enforceFridayLock(coming && USER_TYPE === 'jeune');
+      setGroupDisplay(guestsGroup, coming);
+      setGroupDisplay(eventsGroup, coming);
+      if (coming) {
+        renderGuestNames(parseInt((document.getElementById('guests') || {}).value || '1', 10) || 1);
+      }
     </script>
   </body>
 </html>
