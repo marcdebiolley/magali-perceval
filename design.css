@@ -339,6 +339,29 @@ body {
   color: var(--white);
 }
 
+.nav-switch{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(122, 27, 27, 0.22);
+  background: rgba(122, 27, 27, 0.08);
+  color: var(--wine);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background 0.3s, border-color 0.3s, color 0.3s;
+}
+
+.nav-switch:hover{
+  background: rgba(122, 27, 27, 0.12);
+  border-color: rgba(122, 27, 27, 0.32);
+}
+
 /* ══════════════════════════════════════
    MOBILE FLOATING PILL
    ══════════════════════════════════════ */
@@ -503,6 +526,7 @@ body {
   line-height: 0.92;
   letter-spacing: 0.01em;
   margin: 0 0 18px;
+  text-align: center;
   opacity: 0;
   animation: fadeUp 1s ease 0.4s forwards;
 }
@@ -514,7 +538,7 @@ body {
   font-style: italic;
   font-size: 0.5em;
   color: var(--gold);
-  margin: 6px 0 8px;
+  margin: 30px 0 20px;
   transform: none;
 }
 
@@ -1838,20 +1862,30 @@ footer:not(.site-footer) .footer-switch{
   margin-top: 22px;
   padding-bottom: 40px;
   font-size: 11px;
-  opacity: 0.55;
+  text-align: center;
   letter-spacing: 0.02em;
 }
 
 footer:not(.site-footer) .footer-switch a{
-  color: var(--ink-faint);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 34px;
+  padding: 0 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(122, 27, 27, 0.22);
+  background: rgba(122, 27, 27, 0.08);
+  color: var(--wine);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   text-decoration: none;
-  border-bottom: 1px solid var(--border);
-  transition: color 0.3s, border-color 0.3s;
+  transition: background 0.3s, border-color 0.3s, color 0.3s;
 }
 
 footer:not(.site-footer) .footer-switch a:hover{
-  color: var(--wine);
-  border-color: var(--wine);
+  background: rgba(122, 27, 27, 0.12);
+  border-color: rgba(122, 27, 27, 0.32);
 }
 
 .footer-ornament {
