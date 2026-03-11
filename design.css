@@ -1286,11 +1286,25 @@ footer#contact > *:not(.section-decor){
 .section-intro {
   color: var(--ink-light);
   font-size: 17px;
-  max-width: 560px;
+  max-width: none;
   margin-left: 0;
   margin-right: 0;
   text-align: left;
   margin-bottom: 78px;
+}
+
+section p,
+section li,
+.card-body > p,
+.transport-method > p,
+.activity-card p,
+.lodging-item span,
+.region-intro,
+.lodging-intro,
+#rsvp .success-text{
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
 }
 
 .festivites-illus{
@@ -1440,6 +1454,7 @@ footer#contact > *:not(.section-decor){
 }
 
 .event-card--samedi .ceremony-head{
+  display: block;
   min-height: 0;
   padding-right: 0;
   margin-bottom: 0;
@@ -1535,10 +1550,12 @@ footer#contact > *:not(.section-decor){
   font-weight: 600;
   font-size: clamp(22px, 2.4vw, 30px);
   color: var(--wine);
-  display:flex;
+  display: flex;
   align-items: center;
-  justify-content: flex-start;
-  gap: 8px;
+  gap: 14px;
+  margin-bottom: 0;
+  text-align: center;
+  justify-content: center;
 }
 
 .transport-head h4{
@@ -1959,29 +1976,38 @@ footer:not(.site-footer) p {
     text-align: left;
   }
 
-  :root{ --mobile-text-width: min(560px, 90vw); }
+  :root{ --mobile-text-width: 100%; }
 
   body,
   section,
-  .section-intro,
   .hero-date,
   .hero-intro,
   .info-label,
   .info-value,
-  .region-intro,
-  .lodging-intro,
   .activity-card,
-  .activity-card p,
-  .activity-card ul,
-  .activity-card ol,
-  .activity-card li,
   .activity-head,
   .transport-method p,
   .tip-box,
-  .tip-box p,
-  footer:not(.site-footer),
-  footer:not(.site-footer) p{
+  footer:not(.site-footer){
     text-align: left !important;
+  }
+
+  section p,
+  section li,
+  .card-body > p,
+  .activity-card p,
+  .activity-card li,
+  .transport-method > p,
+  .lodging-item span,
+  .section-intro,
+  .region-intro,
+  .lodging-intro,
+  #rsvp .success-text,
+  .tip-box p,
+  footer:not(.site-footer) p{
+    text-align: justify !important;
+    text-justify: inter-word;
+    hyphens: auto;
   }
 
   section h1,
@@ -2011,20 +2037,20 @@ footer:not(.site-footer) p {
   .region-intro,
   .lodging-intro,
   #rsvp-success .success-text{
-    max-width: var(--mobile-text-width);
-    margin-left: auto;
-    margin-right: auto;
+    max-width: none;
+    margin-left: 0;
+    margin-right: 0;
   }
 
   .section-intro{
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 0;
+    margin-right: 0;
   }
 
   .card-header{ align-items: center; }
   .card-day,
   .card-badge{ text-align: center; }
-  .card-body p{ text-align: left; }
+  .card-body p{ text-align: justify !important; }
 
   .event-card--jeudi .ceremony-illus--jeudi{
     float: none;
@@ -2057,6 +2083,19 @@ footer:not(.site-footer) p {
     margin: 12px auto 16px;
   }
   .ceremony-illus--large img{ width: min(420px, 100%); }
+
+  .event-card--samedi .ceremony-illus--samedi{
+    float: right !important;
+    width: 120px !important;
+    display: block !important;
+    justify-content: flex-start !important;
+    margin: 0 0 10px 14px !important;
+  }
+
+  .event-card--samedi .ceremony-illus--samedi img{
+    width: 100% !important;
+    margin: 0 !important;
+  }
 
   .transport-head,
   .activity-head{
