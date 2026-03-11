@@ -524,9 +524,11 @@ body {
   margin: 12px auto 0;
   max-width: 880px;
   font-size: clamp(18px, 2.1vw, 24px);
-  line-height: 1.55;
+  line-height: 1.85;
   color: var(--ink);
+  text-align: center;
   opacity: 0;
+  transform: translateY(14px);
   animation: fadeUp 1s ease 0.55s forwards;
 }
 
@@ -701,6 +703,7 @@ body {
 
 #rsvp .section-intro{
   margin: 0 auto;
+  text-align: center;
 }
 
 #rsvp .rsvp-card{
@@ -1655,7 +1658,7 @@ section li,
   display: grid;
   grid-template-columns: 1fr;
   gap: 28px;
-  margin-top: 14px;
+  margin-top: 0;
 }
 
 .activity-card {
@@ -1691,6 +1694,10 @@ section li,
   padding-bottom: 20px;
 }
 
+.activity-card--ventoux .activity-illus img{
+  width: 160px;
+}
+
 .activity-card:hover {
   box-shadow: none;
   transform: none;
@@ -1706,7 +1713,7 @@ section li,
 }
 
 .region-intro{
-  text-align: left;
+  text-align: center;
 }
 
 .activity-head h4{
@@ -1881,25 +1888,25 @@ footer:not(.site-footer) .footer-switch{
 }
 
 footer:not(.site-footer) .footer-switch a{
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  height: 34px;
-  padding: 0 16px;
-  border-radius: 999px;
-  border: 1px solid rgba(122, 27, 27, 0.22);
-  background: rgba(122, 27, 27, 0.08);
-  color: var(--wine);
-  font-weight: 600;
+  display: inline;
+  background: none;
+  border: none;
+  padding: 0;
+  height: auto;
+  border-radius: 0;
+  color: var(--ink-faint);
+  font-size: 10px;
+  font-weight: 300;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   text-decoration: none;
-  transition: background 0.3s, border-color 0.3s, color 0.3s;
+  opacity: 0.22;
+  transition: opacity 0.3s, color 0.3s;
 }
 
 footer:not(.site-footer) .footer-switch a:hover{
-  background: rgba(122, 27, 27, 0.12);
-  border-color: rgba(122, 27, 27, 0.32);
+  opacity: 0.35;
+  color: var(--ink-faint);
 }
 
 .footer-ornament {
@@ -2025,6 +2032,10 @@ footer:not(.site-footer) p {
     text-align: center !important;
   }
 
+  .hero-date{ text-align: center !important; }
+  .hero-intro{ text-align: center !important; }
+  .region-intro{ text-align: center !important; }
+
   section p,
   section ul,
   section ol,
@@ -2120,6 +2131,10 @@ footer:not(.site-footer) p {
   .activity-illus img{
     display:block;
     margin: 12px auto 0;
+  }
+
+  .activity-card--ventoux .activity-illus img{
+    width: 220px;
   }
 
   .transport-method h4{
