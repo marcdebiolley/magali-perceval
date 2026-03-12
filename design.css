@@ -1043,7 +1043,7 @@ body {
 }
 
 @media (max-width: 768px) {
-  #rsvp{ padding: 100px 24px; }
+  #rsvp{ padding: 64px 24px 90px; }
   #rsvp .rsvp-card{ padding: 32px 24px; }
   #rsvp .form-row{ grid-template-columns: 1fr; gap: 0; }
   #rsvp .radio-group{ grid-template-columns: 1fr; }
@@ -1997,6 +1997,22 @@ footer:not(.site-footer) p {
   .tip-box,
   footer:not(.site-footer){
     text-align: left !important;
+  }
+
+  footer#contact:not(.site-footer){
+    text-align: center !important;
+  }
+
+  footer#contact:not(.site-footer) .footer-contacts{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  footer#contact:not(.site-footer) p{
+    text-align: center !important;
+    text-justify: auto;
+    hyphens: none;
   }
 
   section p,
