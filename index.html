@@ -339,7 +339,7 @@
           <p>La gare la plus proche de Crillon est Avignon TGV (à environ 35 minutes de voiture).</p>
           <p>En général il y a 2 trains directs par jour (le matin et en début d’après-midi) depuis Bruxelles-Midi vers Avignon TGV, et le trajet dure un peu moins de 5h. Il existe également de nombreux trains avec une escale à Paris, d’une durée similaire et souvent moins chers.</p>
           <p><span class="transport-em">Attention</span> le prix des billets augmente rapidement, et il est donc recommandé de ne pas trop tarder à les prendre.</p>
-          <p><span class="transport-em">Petit conseil :</span> la SNCF propose une carte Avantage (49 €, valable 1 an) qui permet à son titulaire et à un accompagnant de bénéficier d’une réduction de 30% sur le prix des billets de train TGV INOUI (hors OUIGO et Eurostar), sur tous les trajets aller-retour avec une nuit du vendredi, du samedi et/ou dimanche et tous les trajets simples le samedi et le dimanche. D’expérience, cette carte Avantage est plus que rentabilisée en un seul aller-retour Bruxelles-Avignon (surtout lorsqu’elle est utilisée pour 2 personnes).</p>
+          <p><span class="transport-em">Petit conseil :</span> tous les billets (à l'exception des Eurostar qui font Bruxelles-Paris) sont annulables et remboursables jusqu'à J-7 donc pour ceux qui viendraient en train ou hésitent à le faire, on vous recommande de les prendre rapidement car les prix augmentent vite (quitte à les annuler plus tard). Il est aussi possible de poser une option valable pendant 7 jours (attention ne pas oublier de la valider) afin de bloquer un billet et le payer plus tard.</p>
           <p><span class="transport-em">Location de voiture :</span> il y a plusieurs agences de location de voitures à la gare d’Avignon TGV (Avis, Hertz, Budget, Sixt, Europcar, Alamo).</p>
         </div>
 
@@ -652,9 +652,10 @@
         var samedi = 'Non';
 
         if (isComing && eventsGroup && !eventsGroup.hidden) {
-          jeudi = form.querySelector('input[name="events"][value="jeudi"]') && form.querySelector('input[name="events"][value="jeudi"]').checked ? 'Oui' : 'Non';
-          vendredi = form.querySelector('input[name="events"][value="vendredi"]') && form.querySelector('input[name="events"][value="vendredi"]').checked ? 'Oui' : 'Non';
-          samedi = form.querySelector('input[name="events"][value="samedi"]') && form.querySelector('input[name="events"][value="samedi"]').checked ? 'Oui' : 'Non';
+          jeudi = form.querySelector('input[name="events"][value="jeudi"]')?.checked ? 'Oui' : 'Non';
+          samedi = form.querySelector('input[name="events"][value="samedi"]')?.checked ? 'Oui' : 'Non';
+          const vendrediChecked = form.querySelector('input[name="events"][value="vendredi"]')?.checked ? 'Oui' : 'Non';
+          vendredi = (form.presence.value === 'oui' && vendrediChecked === 'Non' && jeudi === 'Non' && samedi === 'Non') ? 'Oui' : vendrediChecked;
         }
 
         var messageVal = form.message ? (form.message.value || '') : '';
