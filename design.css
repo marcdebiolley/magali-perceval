@@ -472,24 +472,29 @@ body {
 }
 
 @media (max-width: 390px) {
-  .pill { padding: 4px; }
+  .pill {
+    padding: 3px;
+    gap: 1px;
+  }
 
   .pill-item {
-    width: 54px;
-    height: 50px;
+    width: 50px;
+    height: 48px;
   }
 
   .pill-item svg {
-    width: 16px;
-    height: 16px;
+    width: 15px;
+    height: 15px;
   }
 
   .pill-item .pill-label {
-    font-size: 6px;
-    max-width: 50px;
+    font-size: 5.5px;
+    max-width: 46px;
   }
 
-  .pill-sep { height: 18px; }
+  .pill-sep {
+    height: 16px;
+  }
 }
 
 .hero {
