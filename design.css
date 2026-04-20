@@ -339,6 +339,22 @@ body {
   color: var(--white);
 }
 
+.nav-links a.nav-gift {
+  background: rgba(184, 138, 43, 0.14);
+  color: var(--wine);
+  padding: 8px 20px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.nav-links a.nav-gift::after { display: none; }
+
+.nav-links a.nav-gift:hover {
+  background: rgba(184, 138, 43, 0.22);
+  color: var(--wine);
+}
+
 /* ══════════════════════════════════════
    MOBILE FLOATING PILL
    ══════════════════════════════════════ */
